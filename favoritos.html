@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Favoritos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+	<meta charset="UTF-8">
+	<meta name="theme-color" content="#1E90FF">
+</head>
+<body>
+
+    <!-- Cabeçalho Fixo -->
+    <div class="cabecalho-fixo-favoritos">
+        <h1>Favoritos</h1>
+    </div>
+	
+	
+	
+	
+
+    <!-- Área Rolável de Favoritos -->
+    <div class="conteudo-rolavel-favoritos">
+        <div id="favoritos" class="lista-simples-favoritos"></div>
+    </div>
+
+    <!-- Botão de Voltar -->
+    <a href="index.html" class="back-button">Voltar</a>
+
+    <script>
+        let favoritos = [];
+        try {
+            favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+        } catch (e) {
+            console.error('Erro ao carregar favoritos do localStorage:', e);
+            localStorage.setItem('favoritos', JSON.stringify([])); // Reseta o localStorage se estiver corrompido
+        }
+
+         async function carregarFavoritos() {
+        const favoritosContainer = document.getElementById('favoritos');
+        
+        if (favoritosContainer) {
+            favoritosContainer.innerHTML = ''; // Limpa o container
+
+            if (favoritos.length === 0) {
+                favoritosContainer.innerHTML = `
+                    <div id="mensagem-favoritos">
+                        Nenhuma musica marcada como favorita.  
+                        Experimente tocar no &#x2764; para guardar suas musicas preferidas aqui.
+                    </div>
+                `;
+                return;
+            }
+
+                favoritosContainer.innerHTML = favoritos
+    .map(musica => `
+        <div class="item-lista">
+            <div class="numero">${musica.numero || ''}</div>
+            <div>${musica.musica || 'Título Desconhecido'}</div>
+            <div class="cantor">${musica.cantor || 'Artista Desconhecido'}</div>
+            <span class="favorito-btn" onclick="toggleFavorito('${musica.numero}')">
+                ${favoritos.some(fav => fav.numero === musica.numero) 
+				
+				
+				
+				
+                    ? '<span class="coracao">&#x2764;</span>' 
+					
+					
+					
+                    : '&#x1F90D;'}
+            </span>
+        </div>
+    `).join('');
+            }
+        }
+
+        // Unificação da função toggleFavorito
+        function toggleFavorito(numeroStr) {
+            const numero = Number(numeroStr);
+            const index = favoritos.findIndex(fav => fav.numero === numero);
+
+            if (index === -1) {
+                // Adiciona aos favoritos
+                favoritos.push({ numero }); // Apenas o número, já que a música é favoritada
+            } else {
+                // Remove dos favoritos
+                favoritos.splice(index, 1);
+            }
+
+            // Atualiza o localStorage com os novos favoritos
+            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+
+            // Atualiza a lista de favoritos na página
+            carregarFavoritos();
+        }
+
+        // Chama a função para exibir os favoritos ao carregar a página
+        document.addEventListener('DOMContentLoaded', carregarFavoritos);
+    </script>
+
+</body>
+</html>

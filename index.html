@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    
+	
+	
+	<!-- Outras metatags existentes -->
+
+    <!-- Metatags para prévia no WhatsApp -->
+    <meta property="og:title" content="Catálogo de Karaokê">
+    <meta property="og:description" content="Explore nosso catálogo completo de músicas para karaokê e divirta-se cantando!">
+    <meta property="og:image" content="URL_da_imagem_de_previa">
+    <meta property="og:url" content="https://ecdiversoes.github.io/catalogo_lm/">
+	
+	
+	<title>Catálogo de Karaokê</title>
+	
+   
+    <!-- Meta Tags PWA -->
+    <meta name="theme-color" content="#1E90FF">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css?v=<?= time(); ?>">
+    <!-- Ícones -->
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+	<link rel="apple-touch-icon" href="icon-310x310.png">
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+	
+	
+	<head>
+    <!-- Font Awesome para usar ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+	
+	
+</head>
+<body>
+
+
+
+
+
+
+    <!-- Botão estiloso de compartilhamento -->
+<button class="share-button" onclick="compartilharWhatsApp()">
+    <i class="fas fa-share-alt"></i> <!-- Ícone de compartilhamento -->
+</button>
+
+
+    <!-- Cabeçalho -->
+    <div class="cabecalho-fixo">
+        <h1>🎤 Catálogo</h1>
+        <input type="search" id="pesquisa" placeholder="       🔍 Pesquise sua música aqui">
+        <div id="aviso"></div>
+		
+		
+<a href="favoritos.html" class="favoritos-link">
+    <span class="heart">❤️</span>
+    <span class="text">Favoritos</span>
+   <span class="counter">0</span> <!-- Contador de favoritos -->
+</a>
+ 
+
+ 
+ 
+ 
+        <!-- Botão de Ajuda -->
+<a href="nova_tela.html" class="help-button">?</a>
+
+    
+
+    <!-- Paginação -->
+    <div class="controles-paginacao">
+        <button id="anterior">Anterior</button>
+        <span id="info-paginacao">Página 1 de 1</span>
+        <button id="proximo">Próximo</button>
+    </div>
+
+ <!-- Conteúdo -->
+    <div class="conteudo-rolavel">
+        <div id="catalogo" class="lista-simples"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
