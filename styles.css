@@ -392,10 +392,10 @@ h1 {
     background-color: #25d366; /* Cor do WhatsApp */
     color: white;     /* Cor do ícone */
     border: none;
-    padding: 15px;
+    padding: 12px;
     border-radius: 50%;  /* Deixa o botão arredondado */
     cursor: pointer;
-    font-size: 15px;    /* Tamanho do ícone */
+    font-size: 12px;    /* Tamanho do ícone */
     display: flex;
     justify-content: center;
     align-items: center;
