@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Favoritos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#1E90FF">
+    <!-- Font Awesome para usar ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Cabeçalho Fixo -->
+    <div class="cabecalho-fixo-favoritos">
+        <h1>Favoritos</h1>
+    </div>
+
+    <!-- Área Rolável de Favoritos -->
+    <div class="conteudo-rolavel-favoritos">
+        <div id="favoritos" class="lista-simples-favoritos"></div>
+    </div>
+
+    <!-- Botão de Voltar -->
+    <a href="index.html" class="back-button">Voltar</a>
+
+    <script>
+        // Carrega os favoritos do localStorage
+        let favoritos = [];
+        try {
+            favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+        } catch (e) {
+            console.error('Erro ao carregar favoritos do localStorage:', e);
+            localStorage.setItem('favoritos', JSON.stringify([])); // Reseta o localStorage se estiver corrompido
+        }
+
+        // Função para exibir a lista de favoritos
+        function exibirFavoritos() {
+            const favoritosContainer = document.getElementById('favoritos');
+
+            if (favoritosContainer) {
+                favoritosContainer.innerHTML = '';
+
+                if (favoritos.length === 0) {
+                    favoritosContainer.innerHTML = `
+                        <div id="mensagem-favoritos">
+                            Nenhuma música marcada como favorita.  
+                            Experimente tocar no ❤️ para guardar suas músicas preferidas aqui.
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Renderiza a lista de favoritos
+                favoritosContainer.innerHTML = favoritos
+                    .map(musica => `
+                        <div class="item-lista" data-numero="${musica.numero}" data-cantor="${encodeURIComponent(musica.cantor)}" data-musica="${encodeURIComponent(musica.musica)}">
+                            <!-- Conteúdo principal do item -->
+                            <div class="conteudo-item">
+                                <span class="numero">${musica.numero || ''}</span>
+                                <span class="musica">${musica.musica || 'Título Desconhecido'}</span>
+                                <span class="cantor">${musica.cantor || 'Artista Desconhecido'}</span>
+                            </div>
+                            <!-- Botões do item -->
+                            <div class="botoes-item">
+                                <!-- Botão de Favoritos -->
+                                <span class="favorito-btn" onclick="toggleFavorito('${musica.numero}')">
+                                    ${favoritos.some(fav => fav.numero === musica.numero) ? '❤️' : '🤍'}
+                                </span>
+                            </div>
+                        </div>
+                    `).join('');
+
+                // Adiciona eventos de clique aos itens da lista de favoritos
+                const itensLista = document.querySelectorAll('.item-lista');
+                itensLista.forEach(item => {
+                    item.addEventListener('click', function (event) {
+                        // Verifica se o clique foi no botão de favoritos
+                        if (event.target.closest('.favorito-btn')) {
+                            return; // Ignora o clique no botão de favoritos
+                        }
+
+                        // Captura os dados do item clicado
+                        const numero = this.getAttribute('data-numero');
+                        const cantor = decodeURIComponent(this.getAttribute('data-cantor'));
+                        const musica = decodeURIComponent(this.getAttribute('data-musica'));
+
+                        // Redireciona para a página de detalhes
+                        abrirDetalhes(numero, cantor, musica);
+                    });
+                });
+            }
+        }
+
+        // Função para redirecionar para a página de detalhes
+        function abrirDetalhes(numero, cantor, musica) {
+            const url = `detalhes.html?numero=${numero}&cantor=${encodeURIComponent(cantor)}&musica=${encodeURIComponent(musica)}`;
+            window.location.href = url;
+        }
+
+        // Função para alternar o estado de favorito
+        function toggleFavorito(numeroStr) {
+            const numero = Number(numeroStr);
+            const index = favoritos.findIndex(fav => fav.numero === numero);
+            if (index === -1) {
+                // Adiciona aos favoritos
+                favoritos.push({ numero }); // Apenas o número, já que a música é favoritada
+            } else {
+                // Remove dos favoritos
+                favoritos.splice(index, 1);
+            }
+            // Atualiza o localStorage com os novos favoritos
+            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+            // Atualiza a lista de favoritos na página
+            exibirFavoritos();
+        }
+
+        // Exibe os favoritos ao carregar a página
+        document.addEventListener('DOMContentLoaded', exibirFavoritos);
+    </script>
+</body>
+</html>
