@@ -1,4 +1,4 @@
-const CACHE_NAME = 'karaoke-cache-v31'; // Altere a vers„o para forÁar atualizaÁ„o
+const CACHE_NAME = 'karaoke-cache-v32'; // Altere a vers√£o para for√ßar atualiza√ß√£o
 const ASSETS = [
   './',
   './index.html',
@@ -15,7 +15,7 @@ const ASSETS = [
   './favicon.ico',
 ];
 
-// InstalaÁ„o do Service Worker
+// Instala√ß√£o do Service Worker
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -24,10 +24,10 @@ self.addEventListener('install', (event) => {
         return cache.addAll(ASSETS); // Armazena os recursos no cache
       })
   );
-  self.skipWaiting(); // ForÁa o Service Worker a se tornar ativo imediatamente
+  self.skipWaiting(); // For√ßa o Service Worker a se tornar ativo imediatamente
 });
 
-// Intercepta as solicitaÁıes de rede
+// Intercepta as solicita√ß√µes de rede
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request) // Tenta servir do cache primeiro
@@ -37,7 +37,7 @@ self.addEventListener('fetch', (event) => {
           return cachedResponse;
         }
 
-        // Se n„o estiver no cache, busca da rede
+        // Se n√£o estiver no cache, busca da rede
         return fetch(event.request)
           .then((networkResponse) => {
             if (networkResponse.ok) {
@@ -49,14 +49,14 @@ self.addEventListener('fetch', (event) => {
             return networkResponse; // Retorna a resposta da rede
           })
           .catch(() => {
-            // Se a rede falhar, retorna a p·gina offline.html
+            // Se a rede falhar, retorna a p√°gina offline.html
             return caches.match('./offline.html');
           });
       })
   );
 });
 
-// AtivaÁ„o do Service Worker
+// Ativa√ß√£o do Service Worker
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -69,5 +69,5 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
-  self.clients.claim(); // Assume o controle de todas as p·ginas imediatamente
+  self.clients.claim(); // Assume o controle de todas as p√°ginas imediatamente
 });
