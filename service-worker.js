@@ -1,4 +1,4 @@
-const CACHE_NAME = 'karaoke-cache-v29'; // Altere a versão para forçar atualização
+const CACHE_NAME = 'karaoke-cache-v30'; // Altere a versÃ£o para forÃ§ar atualizaÃ§Ã£o
 const ASSETS = [
   './',
   './index.html',
@@ -22,16 +22,16 @@ self.addEventListener('install', (event) => {
         console.log('[SW] Cache aberto:', CACHE_NAME);
         return Promise.all(
           ASSETS.map(asset => {
-            let url = asset + '?v=' + new Date().getTime(); // Corrigida a interpolação
+            let url = asset + '?v=' + new Date().getTime(); // Corrigida a interpolaÃ§Ã£o
             return fetch(url)
               .then(response => {
                 if (!response.ok) {
-                  throw new Error('Erro ao buscar ' + url + ': ' + response.status); // Corrigida a interpolação
+                  throw new Error('Erro ao buscar ' + url + ': ' + response.status); // Corrigida a interpolaÃ§Ã£o
                 }
                 return cache.put(asset, response);
               })
               .catch(error => {
-                console.error('[SW] Falha ao armazenar ' + asset + ':', error); // Corrigida a interpolação
+                console.error('[SW] Falha ao armazenar ' + asset + ':', error); // Corrigida a interpolaÃ§Ã£o
               });
           })
         );
