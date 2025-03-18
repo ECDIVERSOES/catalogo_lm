@@ -120,14 +120,19 @@ function atualizarPaginacao() {
     if (btnProximo) btnProximo.disabled = paginaAtual >= totalPaginas;
 }
 
+// Função para remover acentos
+function removerAcentos(texto) {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
 function filtrarCatalogo(event) {
-    const termo = event.target.value.trim().toLowerCase();
+    const termo = removerAcentos(event.target.value.trim().toLowerCase());
 
     itensFiltrados = cache.filter(item => {
-        const numero = item.numero?.toString().toLowerCase() || '';
-        const musica = item.musica?.toString().toLowerCase() || '';
-        const cantor = item.cantor?.toString().toLowerCase() || '';
-        const genero = item.genero?.toString().toLowerCase() || '';
+        const numero = removerAcentos(item.numero?.toString().toLowerCase() || '');
+        const musica = removerAcentos(item.musica?.toString().toLowerCase() || '');
+        const cantor = removerAcentos(item.cantor?.toString().toLowerCase() || '');
+        const genero = removerAcentos(item.genero?.toString().toLowerCase() || '');
 
         return numero.includes(termo) || musica.includes(termo) || cantor.includes(termo) || genero.includes(termo);
     });
