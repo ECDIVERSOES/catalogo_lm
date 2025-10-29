@@ -1,4 +1,4 @@
-const CACHE_NAME = 'karaoke-cache-v32'; // Altere a versão para forçar atualização
+const CACHE_NAME = 'karaoke-cache-v31'; // Altere a versão para forçar atualização
 const ASSETS = [
   './',
   './index.html',
