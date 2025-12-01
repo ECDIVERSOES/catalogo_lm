@@ -1,0 +1,8 @@
+python -m http.server 8000 no pront de comando
+
+http://localhost:8000 digitar no navegador
+
+
+limper cache
+
+python -m http.server 8000 --bind 0.0.0.0

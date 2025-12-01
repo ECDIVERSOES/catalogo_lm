@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Detalhes da Música</title>
+    <!-- Fontes e Dependências -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="theme-color" content="#ECF0F1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ECF0F1;
+            color: #1D6A3B;
+        }
+
+        /* Mini Player */
+        .mini-player {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .mini-player iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        /* Detalhes */
+        .conteudo-detalhes {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .detalhes p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        /* Letra */
+        .letra-container {
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .letra {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* Botões */
+        .botoes-acao {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .botao {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .voltar-btn { background: #1E90FF; color: white; }
+        .favorito-btn { background: transparent; color: red; font-size: 20px; }
+        .compartilhar-btn { background: #25D366; color: white; font-size: 16px; }
+
+        /* Modal de Compartilhamento */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .share-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 90%;
+            position: relative;
+        }
+
+        .share-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .share-image {
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .share-actions button {
+            margin: 0 5px;
+            padding: 8px 25px;
+            border-radius: 20px;
+            border: none;
+            background: #1D6A3B;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Loader */
+        .carregando {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            z-index: 9999;
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .mini-player { 
+                margin: 10px;
+                max-width: 95%;
+            }
+            .letra {
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="carregando">Carregando...</div>
+
+    <!-- Mini Player -->
+    <div class="mini-player">
+        <div id="mini-player-video"></div>
+    </div>
+
+    <!-- Detalhes -->
+    <div class="conteudo-detalhes">
+        <div class="detalhes">
+            <p><strong>Número:</strong> <span id="detalhes-numero">Desconhecido</span></p>
+            <p><strong>Cantor:</strong> <span id="detalhes-cantor">Artista Desconhecido</span></p>
+            <p><strong>Música:</strong> <span id="detalhes-musica">Título Desconhecido</span></p>
+        </div>
+
+        <!-- Letra -->
+        <div class="letra-container">
+            <div class="letra" id="detalhes-letra">Letra não disponível.</div>
+        </div>
+
+        <!-- Botões -->
+        <div class="botoes-acao">
+            <a href="index.html" class="botao voltar-btn">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+            <button id="favorito-btn" class="botao favorito-btn" onclick="toggleFavorito()" aria-label="Favoritar música">🤍</button>
+            <button id="compartilhar-btn" class="botao compartilhar-btn" onclick="compartilharWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Compartilhar
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Share -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-content">
+            <button class="share-close" onclick="closeShareModal()">×</button>
+            <img id="shareImage" class="share-image" alt="Capa para Compartilhamento" loading="lazy">
+            <div class="share-actions">
+                <button onclick="downloadImage()"><i class="fas fa-download"></i> Baixar</button>
+                <button onclick="closeShareModal()"><i class="fas fa-times"></i> Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+	
+	<!-- Script para desabilitar a rolagem no celular -->
+	document.addEventListener('touchmove', function(event) {
+            event.preventDefault(); // Impede o comportamento padrão de rolagem
+        }, { passive: false }); // Define como não passivo para permitir a prevenção de padrão
+	
+	
+	
+        const API_KEY = 'AIzaSyC4kYpqMO4FmC5tsW2SJG4ocmTiS6d2vlM'; // Chave da API do YouTube
+        const GOOGLE_API_KEY = 'AIzaSyDniV2czDJ5q6MaKnmI1fEqtF4-rygdES8'; // Chave da API do Google Custom Search
+        const SEARCH_ENGINE_ID = 'f5b2413072fc14994'; // ID do motor de busca personalizado
+
+        // Função para buscar vídeo no YouTube
+        async function buscarVideoYouTube(cantor, musica) {
+            const query = `${cantor} ${musica}`;
+            const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Falha ao buscar vídeo');
+                const data = await response.json();
+                if (data.items.length === 0) throw new Error('Nenhum vídeo encontrado');
+                const videoId = data.items[0].id.videoId;
+                window.videoId = videoId; // Armazena o ID do vídeo
+                return videoId;
+            } catch (error) {
+                console.error('Erro ao buscar vídeo:', error);
+                return null;
+            }
+        }
+
+        // Função para buscar a letra da música usando o Google Custom Search
+        async function buscarLetraGoogle(artista, musica) {
+            const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(artista + ' ' + musica + ' letra')}&key=${GOOGLE_API_KEY}&cx=${SEARCH_ENGINE_ID}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Erro ao buscar letra');
+                const data = await response.json();
+
+                // Retorna o primeiro resultado
+                if (data.items && data.items.length > 0) {
+                    return data.items[0].snippet; // Retorna um trecho da letra
+                } else {
+                    throw new Error('Letra não encontrada.');
+                }
+            } catch (error) {
+                console.error('Erro ao buscar letra:', error);
+                return 'Desculpe, a letra desta música não foi encontrada.';
+            }
+        }
+
+        // Função para mostrar/ocultar o loader
+        function toggleLoader(show) {
+            const loader = document.querySelector('.carregando');
+            if (loader) {
+                loader.style.display = show ? 'flex' : 'none';
+            }
+        }
+
+        // Função principal para carregar os dados da música
+        async function carregarDadosMusica() {
+            toggleLoader(true); // Mostrar o loader
+
+            const params = new URLSearchParams(window.location.search);
+            const numero = parseInt(params.get('numero'), 10);
+
+            try {
+                // Buscar dados da música no JSON
+                const response = await fetch('songs.json');
+                if (!response.ok) throw new Error('Falha ao carregar dados');
+                const data = await response.json();
+
+                // Encontrar a música pelo número
+                const musica = data.find(m => m.numero === numero);
+                if (!musica) throw new Error('Música não encontrada');
+
+                // Preencher detalhes da música
+                document.getElementById('detalhes-numero').textContent = musica.numero;
+                document.getElementById('detalhes-cantor').textContent = musica.cantor;
+                document.getElementById('detalhes-musica').textContent = musica.musica;
+
+                // Buscar letra da música usando o Google Custom Search
+                const letra = await buscarLetraGoogle(musica.cantor, musica.musica);
+                document.getElementById('detalhes-letra').textContent = letra;
+
+                // Buscar vídeo no YouTube
+                const videoId = await buscarVideoYouTube(musica.cantor, musica.musica);
+                const videoContainer = document.getElementById('mini-player-video');
+
+                if (videoId && videoContainer) {
+                    videoContainer.innerHTML = `
+                        <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&controls=1" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope" 
+                                allowfullscreen>
+                        </iframe>
+                    `;
+                } else if (videoContainer) {
+                    videoContainer.innerHTML = '<p>Nenhum vídeo encontrado.</p>';
+                }
+
+                // Armazenar música atual para uso posterior
+                window.musicaAtual = musica;
+
+                // Atualizar o estado do favorito após carregar os dados da música 
+                atualizarEstadoFavorito();
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao carregar a música. Tente novamente.');
+            } finally {
+                toggleLoader(false); // Ocultar o loader
+            }
+        }
+
+        // Função para verificar e atualizar o estado do favorito ao carregar a página
+        function atualizarEstadoFavorito() {
+            const btn = document.getElementById('favorito-btn');
+            const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+            const musica = window.musicaAtual;
+
+            if (!musica) {
+                console.error('Erro: Nenhuma música carregada.');
+                return;
+            }
+
+            // Verifica se a música já está nos favoritos
+            const musicaJaFavoritada = favoritos.some(f => f.numero === musica.numero);
+
+            // Atualiza o ícone do botão
+            btn.textContent = musicaJaFavoritada ? '❤️' : '🤍';
+        }
+
+        // Função para adicionar/remover dos favoritos
+        function toggleFavorito() {
+            const btn = document.getElementById('favorito-btn');
+            const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+            const musica = window.musicaAtual;
+
+            if (!musica) {
+                console.error('Erro: Nenhuma música carregada.');
+                return;
+            }
+
+            // Verifica se a música já está nos favoritos
+            const musicaJaFavoritada = favoritos.some(f => f.numero === musica.numero);
+
+            if (musicaJaFavoritada) {
+                // Remove a música dos favoritos
+                const novosFavoritos = favoritos.filter(f => f.numero !== musica.numero);
+                localStorage.setItem('favoritos', JSON.stringify(novosFavoritos));
+                btn.textContent = '🤍'; // Ícone de não favorito
+                console.log('Música removida dos favoritos:', musica);
+            } else {
+                // Adiciona a música aos favoritos
+                favoritos.push(musica);
+                localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                btn.textContent = '❤️'; // Ícone de favorito
+                console.log('Música adicionada aos favoritos:', musica);
+            }
+        }
+
+        // Função para compartilhar no WhatsApp
+        function compartilharWhatsApp() {
+            const musica = window.musicaAtual;
+            if (!musica) {
+                alert('Nenhuma música carregada para compartilhar.');
+                return;
+            }
+
+            // Monta o texto da mensagem no formato desejado
+            const mensagem = `Confira essa música:\n\n🎵 ${musica.musica}\n🎤 ${musica.cantor}\n🔢 ${musica.numero}`;
+
+            // URL para compartilhar no WhatsApp
+            const urlWhatsApp = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensagem)}`;
+
+            // Abre o link no WhatsApp
+            window.open(urlWhatsApp, '_blank');
+        }
+
+        // Ao carregar a página, verifica o estado dos favoritos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carrega os dados da música e atualiza o estado do favorito
+            carregarDadosMusica();
+        });
+    </script>
+</body>
+</html>

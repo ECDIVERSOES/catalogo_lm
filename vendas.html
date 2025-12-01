@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"> <!-- Certifique-se de que o charset é UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alugue seu Equipamento</title>
+    <!-- Inclua o Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset básico para garantir consistência */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos globais */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+        p {
+            color: #666;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .imagem-produto {
+            margin: 10px auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+
+        .botoes-container {
+            display: flex;
+            flex-direction: column; /* Botões em coluna para smartphones */
+            gap: 15px; /* Espaço entre os botões */
+            margin: 20px 0;
+        }
+        .botao-destaque, .botao-instagram, .botao-facebook {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Alinha o conteúdo à esquerda */
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            text-align: left; /* Alinha o texto à esquerda */
+        }
+        .botao-destaque {
+            background-color: #28a745; /* Verde para WhatsApp */
+        }
+        .botao-destaque:hover {
+            background-color: #218838;
+        }
+        .botao-instagram {
+            background-color: #E4405F; /* Rosa para Instagram */
+        }
+        .botao-instagram:hover {
+            background-color: #D32A50;
+        }
+        .botao-facebook {
+            background-color: #1877F2; /* Azul para Facebook */
+        }
+        .botao-facebook:hover {
+            background-color: #1466C2;
+        }
+        .botao-voltar {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        .botao-voltar:hover {
+            background-color: #0056b3;
+        }
+
+        /* Ajustes para telas maiores (opcional) */
+        @media (min-width: 600px) {
+            .botoes-container {
+                flex-direction: row; /* Botões lado a lado em telas maiores */
+                justify-content: center;
+            }
+            .botao-destaque, .botao-instagram, .botao-facebook {
+                width: auto;
+            }
+        }
+
+        /* Estilo para os ícones */
+        .botao-destaque i, .botao-instagram i, .botao-facebook i {
+            margin-right: 15px; /* Espaço entre o ícone e o texto */
+            font-size: 24px; /* Tamanho maior dos ícones */
+        }
+    </style>
+</head>
+<body>
+    <h1>LM KARAOKÊ</h1>
+    <p>locação de karaokê 3x1 para festas e eventos. Entre em contato para um orçamento sem compromisso! Aceitamos cartão de crédito., siga-nos no Instagram ou curta nossa p&aacute;gina no Facebook!</p>
+
+    <!-- Espaço para a imagem do produto -->
+    <img src="imagens/vendas.jpg" alt="Imagem do Produto" class="imagem-produto">
+
+    <!-- Container para os botões WhatsApp, Instagram e Facebook -->
+    <div class="botoes-container">
+        <!-- Botão "Fale conosco no WhatsApp" -->
+        <a href="https://wa.me/5522999292436?text=Ol&aacute;! Tenho interesse em alugar um Karaokê. Aguardo seu retorno. Obrigado(a)!" class="botao-destaque">
+            <i class="fab fa-whatsapp"></i> <!-- Ícone do WhatsApp -->
+            Fale conosco no WhatsApp
+        </a>
+
+        <!-- Botão "Siga-nos no Instagram" -->
+        <a href="https://www.instagram.com/lm.karaoke?igsh=MXIwdHdqNDVoMGMwcg==" class="botao-instagram">
+            <i class="fab fa-instagram"></i> <!-- Ícone do Instagram -->
+            Siga-nos no Instagram
+        </a>
+
+        <!-- Botão "Curta nossa página no Facebook" -->
+        <a href="https://www.facebook.com/share/1N37hNVryb/" class="botao-facebook">
+            <i class="fab fa-facebook"></i> <!-- Ícone do Facebook -->
+            Curta nossa página no Facebook
+        </a>
+    </div>
+
+    <!-- Botão "Voltar" -->
+    <a href="index.html" class="botao-voltar">Voltar para P&aacute;gina Principal</a>
+
+    <script>
+	<!-- Script para desabilitar a rolagem no celular -->
+	document.addEventListener('touchmove', function(event) {
+            event.preventDefault(); // Impede o comportamento padrão de rolagem
+        }, { passive: false }); // Define como não passivo para permitir a prevenção de padrão
+	
+	
+	
+	
+      
+    </script>
+</body>
+</html>

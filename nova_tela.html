@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ajuda</title>
+    <link rel="stylesheet" href="styles.css">
+	<meta name="theme-color" content="#ECF0F1">
+    <style>
+        /* Estilo para o body (impede a rolagem) */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF; /* Fundo branco */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start; /* Alinha tudo ao topo */
+            align-items: flex-start;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden; /* Impede rolagem */
+            touch-action: none; /* Desativa gestos de toque */
+        }
+        /* Caixa para o conte˙do da tela */
+        .nova-tela {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            margin: 20px auto;
+            position: fixed; /* Tela fixa */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto; /* Permite rolagem interna se necess·rio */
+            background-color: #FFFFFF;
+            z-index: 999; /* Garante que a tela fique no topo */
+        }
+        /* LocaÁıes */
+        .locacoes {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centraliza o texto */
+        }
+        .locacoes h2 {
+            font-size: 1.5rem;
+            color: #1E90FF;
+            margin-bottom: 10px;
+        }
+        .locacoes p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .locacoes .botao-container {
+            margin-top: 10px;
+        }
+        .locacoes a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #25D366; /* Cor do WhatsApp */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .locacoes a:hover {
+            background-color: #128C7E; /* Cor do WhatsApp ao passar o mouse */
+        }
+        .locacoes a.call {
+            background-color: #FF0000; /* Cor para o link de ligar */
+        }
+        .locacoes a.call:hover {
+            background-color: #D70000; /* Cor para o link de ligar ao passar o mouse */
+        }
+        /* InformaÁıes de desenvolvimento */
+        .info-desenv {
+            margin-top: 20px;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centraliza o texto */
+        }
+        .info-desenv p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .info-desenv a {
+            font-size: 1.1rem;
+            color: #1E90FF;
+            text-decoration: none;
+        }
+        .info-desenv a:hover {
+            text-decoration: underline;
+        }
+        /* Caixa de AtualizaÁ„o de Pacotes */
+        .atualizacao-pacotes {
+            margin-top: 20px;
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centraliza o texto */
+        }
+        .atualizacao-pacotes h3 {
+            font-size: 1.4rem;
+            color: #FF6347; /* Cor para tÌtulo */
+            margin-bottom: 15px;
+        }
+        .atualizacao-pacotes p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+        /* Bot„o de Voltar */
+        .botao-voltar {
+            background-color: #1E90FF;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .botao-voltar:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: 95%; /* Garante que o conte˙do se ajuste na tela do celular */
+            }
+            .botao-contato, .botao-voltar {
+                font-size: 16px; /* Aumenta a visibilidade em telas pequenas */
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nova-tela"> 
+        <!-- Campo de LocaÁıes -->
+        <div class="locacoes">
+            
+            <!-- ContÍiner para os botıes -->
+            <div class="botao-container">
+			     <p><strong>KARAOK√ä CAT√ÅLOGO</strong></p>
+                 <p>31.100 M√∫sicas</p>
+            </div>
+        </div>
+        <!-- Campo de InformaÁıes de Desenvolvimento -->
+        <div class="info-desenv">
+            <p><strong>Desenvolvido por EC DIVERS√ïES</strong></p>
+            <p><strong></strong> <a href="mailto:esiocosta16@gmail.com">esiocosta16@gmail.com</a></p>
+        </div>
+        <!-- Nova Caixa de AtualizaÁ„o de Pacotes -->
+        <div class="atualizacao-pacotes">
+            <h3>ATUALIZA√á√ÉO DE PACOTES</h3>
+            <p>Estamos atualizando constantemente os pacotes para garantir que voce tenha sempre o melhor servico!</p>
+            <p>Novos pacotes adicionados Fevereiro 2025</p>
+			<p>RAF Internacionais 15J e Nacionais 41C</p>
+			<p>CTS Internacionais 19 e Nacionais 39</p>	
+			<p></p>	
+            <p><strong></strong></p>			
+        </div>
+        <!-- Bot„o de Voltar -->
+        <a href="index.html" class="botao-voltar">Voltar para o Cat√°logo</a>
+    </div>
+
+    <!-- Script para desabilitar a rolagem no celular -->
+    <script>
+        document.addEventListener('touchmove', function(event) {
+            event.preventDefault(); // Impede o comportamento padr„o de rolagem
+        }, { passive: false }); // Define como n„o passivo para permitir a prevenÁ„o de padr„o
+    </script>
+</body>
+</html>
