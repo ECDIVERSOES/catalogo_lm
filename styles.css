@@ -53,8 +53,15 @@ body {
 
 h1 {
     color: #FFFFFF;
-    font-size: 1.6rem;
-    margin-bottom: 10px;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.atualizacao-info {
+    margin-top: 0px;      /* espaço acima da frase (reduzido) */
+    margin-bottom: 5px;   /* espaço abaixo da frase */
+    font-size: 12px;      /* opcional: reduzir tamanho da fonte */
+    color: #FFFFFF;       /* mantém branco */
 }
 
 /* Campo de pesquisa */
@@ -134,12 +141,12 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Alinha o conteúdo verticalmente */
-    padding: 15px;
+    padding: 1px;
     background-color: #FFFFFF;
     border-radius: 10px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     cursor: pointer;
-    min-height: 80px;
+    min-height: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: left; /* Alinha o conteúdo à esquerda */
@@ -149,7 +156,7 @@ h1 {
 .numero, .cantor, .musica, .genero {
     display: block; /* Garante que ocupem o espaço da linha */
     text-align: left; /* Alinha o texto à esquerda */
-    margin: 6px 0; /* Espaçamento entre as linhas */
+    margin: 1px 0; /* Espaçamento entre as linhas */
 }
 
 .numero {
@@ -174,7 +181,7 @@ h1 {
     color: #666;
     font-size: 0.9rem;
     font-style: italic;
-    margin-top: 6px;
+   /* margin-top: 6px; */
 }
 
 /* Controles de Paginação Fixos */
@@ -461,3 +468,81 @@ h1 {
     cursor: pointer;
     font-size: 1.2em; /* Ajuste o tamanho do ícone conforme necessário */
 }
+
+
+
+
+
+
+/* Rodapé */
+.rodape {
+    position: fixed;
+    bottom: 60px;          /* acima dos botões de paginação */
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 998;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    border-top: 2px solid #ffd700;
+}
+
+.rodape-mensagem span {
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.botao-pedido {
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.botao-pedido i {
+    font-size: 16px;
+}
+
+.botao-pedido:hover {
+    background-color: #128C7E;
+    transform: scale(1.05);
+}
+
+/* Ajuste para telas pequenas */
+@media (max-width: 480px) {
+    .rodape {
+        bottom: 55px;
+        padding: 6px 10px;
+    }
+    
+    .rodape-mensagem span {
+        font-size: 10px;
+    }
+    
+    .botao-pedido {
+        padding: 6px 12px;
+        font-size: 10px;
+    }
+    
+    .botao-pedido i {
+        font-size: 14px;
+    }
+}
+
+
+
+
+
