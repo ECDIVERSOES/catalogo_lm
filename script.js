@@ -309,3 +309,23 @@ if (window.location.pathname.endsWith('favoritos.html')) {
 } else {
     carregarCatalogo();
 }
+
+// Função para enviar pedido de música via WhatsApp
+function enviarPedidoWhatsApp() {
+    // Número do WhatsApp (substitua pelo seu número com DDD e país)
+    // Formato: 55DDDnumero (sem espaços, sem parênteses, sem traços)
+    const numeroWhatsApp = "5522999292436";  // ← SUBSTITUA PELO SEU NÚMERO!
+    
+    // Mensagem pré-formatada com texto personalizado
+    const mensagem = "Olá! Gostaria de solicitar uma música para o catálogo.%0A%0A" +
+                     "*Cantor:* %0A" +
+                     "*Música:* %0A%0A" +
+                     "Os pedidos serão incluídos na próxima atualização.%0A" +
+                     "Obrigado por ajudar a manter nosso repertório atualizado! 🎤";
+    
+    // Link do WhatsApp
+    const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+    
+    // Abrir WhatsApp
+    window.open(linkWhatsApp, '_blank');
+}
