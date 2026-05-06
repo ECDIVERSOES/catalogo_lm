@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ajuda</title>
+    <link rel="stylesheet" href="styles.css">
+	<meta name="theme-color" content="#000000">
+    <style>
+        /* Estilo para o body (impede a rolagem) */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000; /* Fundo preto */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start; /* Alinha tudo ao topo */
+            align-items: flex-start;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden; /* Impede rolagem */
+            touch-action: none; /* Desativa gestos de toque */
+        }
+        /* Caixa para o conteúdo da tela */
+        .nova-tela {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            margin: 20px auto;
+            position: fixed; /* Tela fixa */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto; /* Permite rolagem interna se necessário */
+            background-color: #000;
+            z-index: 999; /* Garante que a tela fique no topo */
+        }
+        /* Locações */
+        .locacoes {
+            background-color: #222222;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centraliza o texto */
+        }
+        .locacoes h2 {
+            font-size: 1.5rem;
+            color: #1E90FF;
+            margin-bottom: 10px;
+        }
+        .locacoes p {
+            font-size: 1.2rem;
+            color: #FFFFFF;
+        }
+        .locacoes .botao-container {
+            margin-top: 10px;
+        }
+        .locacoes a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #25D366; /* Cor do WhatsApp */
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .locacoes a:hover {
+            background-color: #128C7E; /* Cor do WhatsApp ao passar o mouse */
+        }
+        .locacoes a.call {
+            background-color: #FF0000; /* Cor para o link de ligar */
+        }
+        .locacoes a.call:hover {
+            background-color: #D70000; /* Cor para o link de ligar ao passar o mouse */
+        }
+        /* Informações de desenvolvimento */
+        .info-desenv {
+            margin-top: 20px;
+            background-color: #222222;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centraliza o texto */
+        }
+        .info-desenv p {
+            font-size: 1.1rem;
+            color: #FFFFFF;
+        }
+        .info-desenv a {
+            font-size: 1.1rem;
+            color: #1E90FF;
+            text-decoration: none;
+        }
+        .info-desenv a:hover {
+            text-decoration: underline;
+        }
+        /* Caixa de Atualização de Pacotes */
+        .atualizacao-pacotes {
+            margin-top: 20px;
+            background-color: #222222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centraliza o texto */
+        }
+        .atualizacao-pacotes h3 {
+            font-size: 1.4rem;
+            color: #FF6347; /* Cor para título */
+            margin-bottom: 15px;
+        }
+        .atualizacao-pacotes p {
+            font-size: 1.1rem;
+            color: #FFFFFF;
+        }
+        /* BOTÃO VERIFICAR ATUALIZAÇÃO */
+        .btn-verificar {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-verificar:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        .btn-verificar:active {
+            transform: scale(0.98);
+        }
+        /* Botão Voltar */
+        .botao-voltar {
+            background-color: #1E90FF;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .botao-voltar:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+            }
+            .botao-contato, .botao-voltar, .btn-verificar {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nova-tela"> 
+        <!-- Campo de Locações -->
+        <div class="locacoes">
+            <div class="botao-container">
+                <p><strong>KARAOKÊ CATÁLOGO</strong></p>
+                <p>32.677 Músicas</p>
+            </div>
+        </div>
+        <!-- BOTÃO VERIFICAR ATUALIZAÇÃO -->
+        <button class="btn-verificar" onclick="window.location.href='atualizacao.html'">
+            🔄 VERIFICAR ATUALIZAÇÕES
+        </button>
+        <!-- Campo de Informações de Desenvolvimento -->
+        <div class="info-desenv">
+            <p><strong>Desenvolvido por EC DIVERSÕES</strong></p>
+            <p><strong></strong> <a href="mailto:esiocosta16@gmail.com">esiocosta16@gmail.com</a></p>
+        </div>
+        <!-- Nova Caixa de Atualização de Pacotes -->
+        <div class="atualizacao-pacotes">
+            <h3>ATUALIZAÇÃO DE PACOTES</h3>
+            <p>O Melhor do Karaoê só em nossas Maquinas tem, (Novos pacotes adicionados 04 de Maio 2026)</p>
+        </div>
+        <!-- Botão de Voltar -->
+        <a href="index.html" class="botao-voltar">Voltar para o Catálogo</a>
+    </div>
+    <!-- Script para desabilitar a rolagem no celular -->
+    <script>
+        document.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+        }, { passive: false });
+    </script>
+</body>
+</html>

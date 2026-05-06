@@ -1,0 +1,579 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000000;
+    color: #E0E0E0;
+    overflow-x: hidden;
+}
+
+/* Cabeçalho Fixo */
+.cabecalho-fixo-favoritos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a2e;
+    z-index: 1500;
+    padding: 0px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Área Rolável de Músicas pagina favoritos */
+.conteudo-rolavel-favoritos {
+    position: fixed;
+    top: 30px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Cabeçalho Fixo */
+.cabecalho-fixo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a2e;
+    z-index: 1000;
+    padding: 0px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.atualizacao-info {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #CCCCCC;
+}
+
+/* Campo de pesquisa */
+#pesquisa {
+    width: 90%;
+    max-width: 270px;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #444;
+    border-radius: 10px;
+    background-color: #2a2a3a;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+#pesquisa:focus {
+    border-color: #666;
+    box-shadow: 0 0 10px rgba(100, 100, 100, 0.8);
+    outline: none;
+}
+
+/* Estilo para o resultado da pesquisa */
+.resultado-pesquisa {
+    font-size: 16px;
+    color: #CCCCCC;
+    margin-top: 5px;
+    text-align: center;
+    display: none;
+}
+
+/* Área Rolável de Músicas */
+.conteudo-rolavel {
+    position: fixed;
+    top: 100px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    overflow-y: auto;
+    padding: 0px;
+}
+
+/* Barra de rolagem personalizada */
+.conteudo-rolavel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.conteudo-rolavel::-webkit-scrollbar-thumb {
+    background-color: #1a1a2e;
+    border-radius: 10px;
+}
+
+/* Lista */
+.lista-simples {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    margin: 0;
+}
+
+/* Lista   /*  separação das musicas  */
+.lista-simples-favoritos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    margin: 0;
+}
+
+/* Estilo para os itens da lista */
+.item-lista {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo verticalmente */
+    padding: 1px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    min-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left; /* Alinha o conteúdo à esquerda */
+}
+
+/* Alinhamento dos números, cantores e músicas à esquerda */
+.numero, .cantor, .musica, .genero {
+    display: block; /* Garante que ocupem o espaço da linha */
+    text-align: left; /* Alinha o texto à esquerda */
+    margin: 1px 0; /* Espaçamento entre as linhas */
+}
+
+.numero {
+    color: #FFD700;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.cantor {
+    color: #4dabf7;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.musica {
+    color: #E0E0E0;
+    font-size: 1rem;
+    text-align: left; /* Garante que a música fique alinhada à esquerda */
+}
+
+.genero {
+    color: #999;
+    font-size: 0.9rem;
+    font-style: italic;
+   /* margin-top: 6px; */
+}
+
+/* Controles de Paginação Fixos */
+.controles-paginacao {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #0a0a0a;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.controles-paginacao button {
+    padding: 10px 20px;
+    border: 2px solid #FF0000;
+    border-radius: 25px;
+    background-color: #FF0000;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.controles-paginacao button:disabled {
+    border-color: #660000;
+    color: #660000;
+    cursor: not-allowed;
+}
+
+.controles-paginacao button:hover:not(:disabled) {
+    background-color: #D70000;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .conteudo-rolavel {
+        top: 110px;
+        bottom: 90px;
+    }
+
+    .lista-simples {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .item-lista {
+        padding: 10px;
+    }
+
+    .controles-paginacao {
+        bottom: 50px;
+        padding: 8px;
+    }
+
+    .controles-paginacao button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+/* Botão de Ajuda dentro da área de controles de paginação */
+.controles-paginacao {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #0a0a0a;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    align-items: center; /* Alinha os elementos centralizados */
+}
+
+/* Botão de Ajuda */
+.help-button {
+    position: fixed; /* Mantém o botão fixo na tela */
+    right: 1px; /* Distância da borda esquerda */
+    bottom: 10px; /* Distância da parte inferior */
+    width: 35px;
+    height: 35px;
+    background-color: #FFD700;
+    border: 2px solid #333;
+    border-radius: 50%;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.help-button:hover {
+    background-color: #FFC107;
+    transform: scale(1.1);
+}
+
+/* Botão de Vendas Fixo */
+.vendas-button {
+    position: fixed;
+    right: 50px;
+    bottom: 10px;
+    width: 35px;
+    height: 35px;
+    background-color: #FFD700;
+    border: 2px solid #333;
+    border-radius: 50%;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.vendas-button:hover {
+    background-color: #FFC107;
+    transform: scale(1.1);
+}
+
+.vendas-button i {
+    font-size: 24px;
+}
+
+/* Botão de Voltar */
+.back-button {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #1a1a2e;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #2a2a4e;
+}
+
+/* Botão de Favorito das músicas pagina favoritos */
+.favorito-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-left: auto;
+    padding: 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+.favorito-btn:hover {
+    transform: scale(1.1);
+}  
+
+.favoritos-link {
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.favoritos-link .heart {
+    font-size: 25px;
+    color: red;
+}
+
+.favoritos-link .text {
+    font-size: 12px;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin-top: 0px;
+}
+
+.favoritos-link .counter {
+    font-size: 15px;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+#mensagem-favoritos {
+    text-align: center;
+    font-size: 25px;
+    color: #ff6666;
+    margin-top: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: none;
+    background: none;
+}
+
+.share-button {
+    position: fixed;
+    bottom: 10px;
+    left: 0px;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.share-button:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+}
+
+/* Estilo para o coração ativo (favoritado) */
+.coracao.favorito-ativo {
+    color: #FF4500;
+    font-size: 1.5rem;
+}
+
+/* Estilo para o coração inativo (não favoritado) */
+.coracao.favorito-inativo {
+    color: #555;
+    font-size: 1.5rem;
+}
+
+/* Botão de Favorito das músicas pagina index */
+.botoes-item {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.favorito-btn {
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+/* Rodapé */
+.rodape {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2a3a 100%);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 998;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+    border-top: 2px solid #ffd700;
+}
+
+.rodape-mensagem span {
+    color: #E0E0E0;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.botao-pedido {
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.botao-pedido i {
+    font-size: 16px;
+}
+
+.botao-pedido:hover {
+    background-color: #128C7E;
+    transform: scale(1.05);
+}
+
+/* Ajuste para telas pequenas */
+@media (max-width: 480px) {
+    .rodape {
+        bottom: 55px;
+        padding: 6px 10px;
+    }
+    
+    .rodape-mensagem span {
+        font-size: 10px;
+    }
+    
+    .botao-pedido {
+        padding: 6px 12px;
+        font-size: 10px;
+    }
+    
+    .botao-pedido i {
+        font-size: 14px;
+    }
+}
+
+/* ======================================== */
+/* ESTILOS PARA O BOTÃO INFANTIL (FILTRO)   */
+/* ======================================== */
+
+/* Botão Infantil na barra de filtros */
+.btn-filtro.infantil {
+    background-color: #2a2a3a;
+    border: 1px solid #00CED1;
+    color: #00CED1;
+}
+
+.btn-filtro.infantil:hover {
+    background-color: #00CED1;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+.btn-filtro.infantil.ativo {
+    background-color: #00CED1;
+    color: #000000;
+    border: 1px solid #00CED1;
+}
+
+/* ======================================== */
+/* ESTILOS PARA MÚSICA INFANTIL NA LISTAGEM */
+/* ======================================== */
+
+/* Destaque visual para músicas infantis (opcional) */
+.item-lista[data-genero="infantil"] {
+    border-left: 4px solid #00CED1;
+    background: linear-gradient(90deg, #1a1a1a 0%, #1a1a2a 100%);
+}
+
+/* Badge do gênero específico para infantil no item da lista */
+.genero-infantil {
+    color: #00CED1;
+    font-weight: bold;
+    background: rgba(0, 206, 209, 0.15);
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.8rem;
+}

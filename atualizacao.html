@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Atualizando - LM KARAOKÊ</title>
+    <meta name="theme-color" content="#000000">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0d1b2a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 50px 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .icone {
+            font-size: 80px;
+            animation: pulse 0.8s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        h2 {
+            color: #FFD700;
+            font-size: 24px;
+            margin: 20px 0 10px;
+        }
+        
+        .versao-info {
+            color: #FFA500;
+            font-size: 14px;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        
+        .mensagem {
+            color: #E0E0E0;
+            font-size: 16px;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+        
+        .destaque {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .info {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #ccc;
+        }
+        
+        .progresso {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 25px;
+            overflow: hidden;
+        }
+        
+        .progresso-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 2px;
+            animation: progresso 10s linear forwards;
+        }
+        
+        @keyframes progresso {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+        
+        .total-musicas {
+            font-size: 12px;
+            color: #FFD700;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icone">🎉</div>
+        <h2>CATÁLOGO ATUALIZADO!</h2>
+        <div class="versao-info">📌 Versão do catálogo: 1.1</div>
+        <div class="mensagem" id="mensagem">
+            Catálogo atualizado dia 04 de Maio 2026<br>
+            ✨ +90 canções novas canções adicionadas!<br>
+            🎵 Aproveite as novidades!
+        </div>
+        <div class="progresso">
+            <div class="progresso-bar"></div>
+        </div>
+        <div class="info">🔃 Redirecionando em 10 segundos...</div>
+        <div class="total-musicas">🎤 Total de músicas: 32.677</div>
+    </div>
+
+    <script>
+        // Contagem regressiva
+        let segundos = 10;
+        const infoDiv = document.querySelector('.info');
+        
+        const intervalo = setInterval(() => {
+            segundos--;
+            if (segundos > 0) {
+                infoDiv.innerHTML = `🔃 Redirecionando em ${segundos} segundos...`;
+            } else {
+                clearInterval(intervalo);
+            }
+        }, 1000);
+        
+        // Redireciona para o index após 10 segundos
+        setTimeout(() => {
+            window.location.href = './index.html';
+        }, 10000);
+    </script>
+</body>
+</html>

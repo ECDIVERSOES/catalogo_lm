@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alugue seu equipamento</title>
+	<meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link rel="stylesheet" href="styles.css">
+	
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000000;
+            padding: 10px 10px 60px; /* Padding de 60px CRÍTICO para liberar espaço para o botão fixo */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; 
+        }
+        
+        /* H1 - Margem Mínima */
+        h1 {
+            margin: 8px 0 5px; 
+            color: #FFD700;
+            font-size: 24px; 
+        }
+        
+        /* Estilos de Texto - Margens Verticais Minimizadas */
+        p {
+            margin: 3px 0; /* Reduzido para o mínimo */
+            line-height: 1.25;
+            font-size: 16px; 
+            color: #F8F9FA;
+            padding: 0 10px;
+        }
+
+        .chamada-principal {
+            color: #d9534f; 
+            font-weight: bold;
+        }
+
+        .chamada-servico {
+            color: #5cb85c; 
+            font-weight: bold;
+            margin-top: 8px; /* Espaçamento essencial */
+        }
+        
+        .chamada-contato {
+             font-weight: 600;
+             margin-top: 5px;
+             margin-bottom: 5px;
+        }
+
+
+        /* FOCO NA IMAGEM - Altura Reduzida */
+        .imagem-produto {
+            margin: 8px auto; 
+            max-width: 90%; 
+            max-height: 25vh; /* REDUÇÃO CRÍTICA para liberar espaço para o texto e botões */
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+            object-fit: contain; 
+        }
+
+        /* ------------------------------------------- */
+        /* ÍCONES CIRCULARES (SOCIAL/WHATSAPP) */
+        /* ------------------------------------------- */
+        .botoes-container {
+            display: flex;
+            flex-direction: row; 
+            justify-content: center; 
+            gap: 20px; 
+            margin: 10px 0 5px; /* Margem reduzida */
+            width: 100%; 
+        }
+        
+        .botao-circle {
+            width: 50px; /* Tamanho reduzido para caber mais */
+            height: 50px;
+            border-radius: 50%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .botao-circle i {
+            font-size: 22px; 
+            margin: 0; 
+        }
+
+        /* Cores (mantidas) */
+        .circle-whatsapp { background-color: #28a745; }
+        .circle-instagram { background-color: #E4405F; }
+        .circle-facebook { background-color: #1877F2; }
+
+        /* ------------------------------------------- */
+        /* BOTÃO VOLTAR FIXO NO RODAPÉ (SOLUÇÃO FINAL) */
+        /* ------------------------------------------- */
+        .botao-voltar {
+            position: fixed; /* GARANTE VISIBILIDADE */
+            bottom: 0; /* Ancorado na parte inferior */
+            left: 0;
+            width: 100%; /* Ocupa a largura total */
+            padding: 15px 0;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 16px; 
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+            z-index: 100;
+        }
+        .botao-voltar:hover {
+            background-color: #1E3A8A;
+        }
+        .botao-voltar i {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>LM KARAOKÊ</h1>
+    
+    <p class="chamada-principal">
+        **Pronto para a festa?** Alugue seu equipamento agora!
+    </p>
+
+    <img src="imagens/vendas.jpg" alt="Aluguel de Equipamentos e Manutenção de Máquinas de Karaokê" class="imagem-produto">
+
+    <p class="chamada-servico">
+        <i class="fas fa-tools" style="margin-right: 5px;"></i> locação de karaokê 3x1 para festas e eventos. Entre em contato para um orçamento sem compromisso! Aceitamos cartão de crédito.</p>
+    
+    <p class="chamada-contato">
+        📞 **ORÇAMENTO RÁPIDO via WhatsApp!** Clique no ícone abaixo e fale conosco.
+    </p>
+    
+    <div class="botoes-container">
+        <a href="https://wa.me/5522999292436?text=Ol&aacute;! Tenho interesse em alugar seus produtos. Aguardo seu retorno. Obrigado(a)!" class="botao-circle circle-whatsapp" title="Orçamento Rápido via WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <a href="https://www.instagram.com/lm.karaoke?igsh=MXIwdHdqNDVoMGMwcg==" class="botao-circle circle-instagram" title="Siga-nos no Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.facebook.com/share/1N37hNVryb/" class="botao-circle circle-facebook" title="Curta nossa página no Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+    </div>
+    
+    <p class="chamada-contato" style="margin-top: 5px; margin-bottom: 5px;">
+        Siga-nos no **Instagram** e curta nossa página no **Facebook** para ver novidades e promoções!
+    </p>
+
+    <a href="index.html" class="botao-voltar">
+        <i class="fas fa-arrow-left"></i> Voltar para Página Principal
+    </a>
+
+    <script>
+        // Script para desabilitar a rolagem (mantido)
+        document.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+        }, { passive: false });
+    </script>
+</body>
+</html>
