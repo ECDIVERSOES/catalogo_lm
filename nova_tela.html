@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Configurações - EC Karaokê</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .nova-tela {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            margin: 0 auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto;
+            background-color: #000;
+            z-index: 999;
+        }
+        .locacoes {
+            background-color: #222;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .locacoes p {
+            font-size: 1.2rem;
+            color: #FFF;
+        }
+        .info-desenv, .atualizacao-pacotes {
+            margin-top: 20px;
+            background-color: #222;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .info-desenv p, .atualizacao-pacotes p {
+            font-size: 1.1rem;
+            color: #FFF;
+        }
+        .info-desenv a {
+            color: #1E90FF;
+            text-decoration: none;
+        }
+        .atualizacao-pacotes h3 {
+            font-size: 1.4rem;
+            color: #FF6347;
+            margin-bottom: 15px;
+        }
+        .btn-verificar {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .botao-voltar {
+            background-color: #1E90FF;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .toggle-modo-card {
+            background-color: #1a1a2e;
+            border-radius: 16px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #333;
+        }
+        .toggle-btn {
+            background: linear-gradient(135deg, #2a2a3a, #1a1a2e);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 14px 20px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .toggle-btn.ativo {
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            border-color: #FF69B4;
+            color: #fff;
+        }
+        .status-modo {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        .status-modo span {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .full-status { color: #FFD700; }
+        .raf-status { color: #FF69B4; }
+        .info-modo {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="nova-tela"> 
+    <div class="locacoes">
+        <p><strong>KARAOKÊ CATÁLOGO</strong></p>
+        <p>32.677 Músicas</p>
+    </div>
+
+    <button class="btn-verificar" onclick="window.location.href='atualizacao.html'">
+        🔄 VERIFICAR ATUALIZAÇÕES
+    </button>
+
+    <div class="toggle-modo-card">
+        <button id="btnToggleModo" class="toggle-btn" onclick="alternarModoExibicao()">
+            🌟 ATIVAR MODO FULL
+        </button>
+        <div class="status-modo">
+            Modo atual:<br>
+            <span id="modoStatusText" class="full-status">RAF (1001 a 50001)</span>
+        </div>
+        <div class="info-modo">
+            🌟 <strong>MODO FULL</strong> → exibe todo o catálogo<br>
+            📋 <strong>MODO RAF</strong> → exibe apenas códigos da Raf entre 1001 e 50001
+        </div>
+    </div>
+
+    <div class="info-desenv">
+        <p><strong>Desenvolvido por EC DIVERSÕES</strong></p>
+        <p><a href="mailto:esiocosta16@gmail.com">esiocosta16@gmail.com</a></p>
+    </div>
+
+    <div class="atualizacao-pacotes">
+        <h3>ATUALIZAÇÃO DE PACOTES</h3>
+        <p>O Melhor do Karaokê só em nossas Máquinas tem, (Novos pacotes adicionados 04 de Maio 2026)</p>
+    </div>
+
+    <a href="index.html" class="botao-voltar">Voltar para o Catálogo</a>
+</div>
+
+<script src="config.js"></script>
+<script>
+    function alternarModoExibicao() {
+        const novoModo = toggleModoFull();   // função do config.js
+        const btn = document.getElementById('btnToggleModo');
+        if (novoModo) {
+            btn.innerHTML = '✓ MODO FULL ATIVADO!';
+        } else {
+            btn.innerHTML = '✓ MODO RAF ATIVADO!';
+        }
+        setTimeout(() => atualizarInterfaceModo(), 1500);
+    }
+
+    function atualizarInterfaceModo() {
+        const modo = loadConfig(); // true = FULL, false = NORMAL
+        const btn = document.getElementById('btnToggleModo');
+        const statusSpan = document.getElementById('modoStatusText');
+        if (!modo) {
+            btn.innerHTML = '🌟 ATIVAR MODO FULL';
+            btn.classList.remove('ativo');
+            statusSpan.innerHTML = 'RAF (1001 a 50001)';
+            statusSpan.className = 'full-status';
+        } else {
+            btn.innerHTML = '🎤 DESATIVAR MODO FULL';
+            btn.classList.add('ativo');
+            statusSpan.innerHTML = 'FULL (todas as músicas, Raf + CTS)';
+            statusSpan.className = 'raf-status';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', atualizarInterfaceModo);
+</script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Detalhes da Música</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1e1e2e;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        .mini-player {
+            width: 100%;
+            max-width: 400px;
+            margin: 10px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #2a2a3a;
+        }
+
+        .mini-player iframe {
+            width: 100%;
+            height: 180px;
+            border: none;
+        }
+
+        .conteudo-detalhes {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .detalhes {
+            background-color: #2c2c3a;
+            border-radius: 15px;
+            padding: 20px 15px;
+            margin-bottom: 15px;
+        }
+
+        #detalhes-numero {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 2rem;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #ffb347;
+            border-radius: 40px;
+            padding: 6px 24px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        #detalhes-cantor {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #7bc5ff;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        #detalhes-musica {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f0f0f0;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .info-valores {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .letra-container {
+            margin: 15px auto;
+            max-width: 95%;
+            width: 100%;
+        }
+
+        .letra {
+            background: #2c2c3a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            max-height: 450px;
+            min-height: 250px;
+            overflow-y: auto;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Roboto', 'Courier New', monospace;
+            font-size: clamp(20px, 10vw, 24px);
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        /* Indicador de loading dentro da própria letra */
+        .letra-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #ffb347;
+            font-style: normal;
+        }
+        .letra-loading i {
+            font-size: 32px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .letra::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        .letra::-webkit-scrollbar-track {
+            background: #1a1a2a;
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+        .letra::-webkit-scrollbar-thumb {
+            background: #ffb347;
+            border-radius: 10px;
+            border: 1px solid #1a1a2e;
+        }
+        .letra::-webkit-scrollbar-thumb:hover {
+            background: #ffd966;
+            cursor: pointer;
+        }
+        .letra {
+            scrollbar-width: thin;
+            scrollbar-color: #ffb347 #1a1a2a;
+        }
+
+        .botoes-acao {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .botao {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .voltar-btn { 
+            background: #2a2a3a; 
+            color: white; 
+        }
+        .voltar-btn:hover {
+            background: #3a3a4e;
+            transform: scale(1.05);
+        }
+
+        .favorito-btn { 
+            background: transparent; 
+            color: #ff6666; 
+            font-size: 20px;
+            border: 2px solid #ff6666;
+        }
+        .favorito-btn:hover {
+            background: rgba(255, 102, 102, 0.2);
+            transform: scale(1.05);
+        }
+
+        .compartilhar-btn { 
+            background: #25D366; 
+            color: white; 
+            font-size: 14px;
+        }
+        .compartilhar-btn:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
+
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .share-content {
+            background: #2c2c3a;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 90%;
+            position: relative;
+            border: 1px solid #ffb347;
+        }
+        .share-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #e0e0e0;
+        }
+        .share-close:hover {
+            color: #ffb347;
+        }
+        .share-image {
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #ffb347;
+        }
+        .share-actions button {
+            margin: 0 5px;
+            padding: 8px 25px;
+            border-radius: 20px;
+            border: none;
+            background: #25D366;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .share-actions button:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
+
+        /* Não usamos mais o overlay global, mas mantemos o estilo caso precise */
+        .carregando {
+            display: none;
+        }
+
+        .feedback {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2a2a3a;
+            color: #ffb347;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            z-index: 10000;
+            border: 1px solid #ffb347;
+            animation: fadeOut 2s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        @media (max-width: 480px) {
+            .mini-player { 
+                margin: 10px;
+                max-width: 95%;
+            }
+            .mini-player iframe {
+                height: 160px;
+            }
+            .letra {
+                max-height: 400px;
+                min-height: 200px;
+                padding: 15px;
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            .botao {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+            #detalhes-numero {
+                font-size: 1.6rem;
+                padding: 4px 18px;
+                margin-bottom: 15px;
+            }
+            #detalhes-cantor {
+                font-size: 1.1rem;
+            }
+            #detalhes-musica {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .letra {
+                max-height: 550px;
+                min-height: 350px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Removido o overlay global de loading -->
+
+    <div class="mini-player">
+        <div id="mini-player-video"></div>
+    </div>
+
+    <div class="conteudo-detalhes">
+        <div class="detalhes">
+            <div class="info-valores">
+                <span id="detalhes-numero">Desconhecido</span>
+                <span id="detalhes-cantor">Artista Desconhecido</span>
+                <span id="detalhes-musica">Título Desconhecido</span>
+            </div>
+        </div>
+
+        <div class="letra-container">
+            <div class="letra" id="detalhes-letra">
+                <div class="letra-loading">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                    <span>Carregando letra...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="botoes-acao">
+            <a href="index.html" class="botao voltar-btn" id="btn-voltar">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+            <button id="favorito-btn" class="botao favorito-btn">🤍</button>
+            <button id="compartilhar-btn" class="botao compartilhar-btn">
+                <i class="fab fa-whatsapp"></i> Compartilhar
+            </button>
+        </div>
+    </div>
+
+    <div class="share-modal" id="shareModal">
+        <div class="share-content">
+            <button class="share-close" onclick="closeShareModal()">×</button>
+            <img id="shareImage" class="share-image" alt="Capa para Compartilhamento" loading="lazy">
+            <div class="share-actions">
+                <button onclick="downloadImage()"><i class="fas fa-download"></i> Baixar</button>
+                <button onclick="closeShareModal()"><i class="fas fa-times"></i> Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = 'AIzaSyC4kYpqMO4FmC5tsW2SJG4ocmTiS6d2vlM';
+        const VAGALUME_API_KEY = '4d8f8b8a9c2a3b1e5f7g9h2j4k6l8m0n';
+
+        function timeoutPromise(ms, promise) {
+            return Promise.race([
+                promise,
+                new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), ms))
+            ]);
+        }
+
+        // 1. Lyrics.ovh
+        async function buscarLetraLyricsOvh(artista, musica) {
+            const artistaLimpo = artista.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            const musicaLimpo = musica.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            const url = `https://api.lyrics.ovh/v1/${encodeURIComponent(artistaLimpo)}/${encodeURIComponent(musicaLimpo)}`;
+            try {
+                const response = await timeoutPromise(2000, fetch(url));
+                if (!response.ok) throw new Error('Não encontrado');
+                const data = await response.json();
+                return data.lyrics || null;
+            } catch {
+                return null;
+            }
+        }
+
+        // 2. LRCLIB
+        async function buscarLetraLRCLIB(artista, musica) {
+            const artistaLimpo = artista.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            const musicaLimpo = musica.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            const url = `https://lrclib.net/api/get?artist_name=${encodeURIComponent(artistaLimpo)}&track_name=${encodeURIComponent(musicaLimpo)}`;
+            try {
+                const response = await timeoutPromise(2000, fetch(url));
+                if (!response.ok) throw new Error('Não encontrado');
+                const data = await response.json();
+                return data.syncedLyrics || data.plainLyrics || null;
+            } catch {
+                return null;
+            }
+        }
+
+        // 3. Vagalume
+        async function buscarLetraVagalume(artista, musica) {
+            const url = `https://api.vagalume.com.br/search.php?art=${encodeURIComponent(artista)}&mus=${encodeURIComponent(musica)}&apikey=${VAGALUME_API_KEY}`;
+            try {
+                const response = await timeoutPromise(2000, fetch(url));
+                if (!response.ok) throw new Error('Não encontrado');
+                const data = await response.json();
+                if (data.mus && data.mus[0] && data.mus[0].text) {
+                    return data.mus[0].text;
+                }
+                return null;
+            } catch {
+                return null;
+            }
+        }
+
+        // 4. ChartLyrics
+        async function buscarLetraChartLyrics(artista, musica) {
+            const url = `http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${encodeURIComponent(artista)}&song=${encodeURIComponent(musica)}`;
+            try {
+                const response = await timeoutPromise(2000, fetch(url));
+                if (!response.ok) throw new Error('Não encontrado');
+                const text = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(text, "text/xml");
+                const lyricNode = xmlDoc.getElementsByTagName("Lyric")[0];
+                if (lyricNode && lyricNode.textContent && lyricNode.textContent.length > 50) {
+                    return lyricNode.textContent;
+                }
+                return null;
+            } catch {
+                return null;
+            }
+        }
+
+        // 5. Genius (API não oficial)
+        async function buscarLetraGenius(artista, musica) {
+            const query = `${artista} ${musica}`;
+            const searchUrl = `https://genius.com/api/search?q=${encodeURIComponent(query)}`;
+            try {
+                const searchResp = await timeoutPromise(2000, fetch(searchUrl));
+                if (!searchResp.ok) throw new Error('Erro na busca');
+                const searchData = await searchResp.json();
+                const hits = searchData.response?.hits;
+                if (!hits || hits.length === 0) throw new Error('Nenhum resultado');
+                
+                let targetHit = null;
+                for (const hit of hits) {
+                    const result = hit.result;
+                    const titleNorm = result.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    const artistNorm = result.primary_artist.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    const musicaNorm = musica.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    const artistaNorm = artista.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    if ((titleNorm.includes(musicaNorm) || musicaNorm.includes(titleNorm)) && 
+                        (artistNorm.includes(artistaNorm) || artistaNorm.includes(artistNorm))) {
+                        targetHit = result;
+                        break;
+                    }
+                }
+                if (!targetHit) targetHit = hits[0].result;
+                
+                const songId = targetHit.id;
+                const songUrl = `https://genius.com/api/songs/${songId}`;
+                const songResp = await timeoutPromise(2000, fetch(songUrl));
+                if (!songResp.ok) throw new Error('Erro ao buscar letra');
+                const songData = await songResp.json();
+                const lyricsHtml = songData.response?.song?.lyrics_html;
+                if (lyricsHtml) {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = lyricsHtml;
+                    let letra = tempDiv.innerText;
+                    if (letra && letra.length > 50) {
+                        return letra.trim();
+                    }
+                }
+                return null;
+            } catch {
+                return null;
+            }
+        }
+
+        // Busca letra com múltiplas fontes (sem timeout global, para não atrasar a página)
+        async function buscarLetraMultiplasFontes(artista, musica) {
+            console.log(`Buscando letra para: ${artista} - ${musica}`);
+            
+            const fonts = [
+                buscarLetraLyricsOvh,
+                buscarLetraLRCLIB,
+                buscarLetraVagalume,
+                buscarLetraChartLyrics,
+                buscarLetraGenius
+            ];
+            
+            // Executa em paralelo e pega a primeira que retornar com sucesso
+            const results = await Promise.allSettled(fonts.map(fn => fn(artista, musica)));
+            
+            for (const result of results) {
+                if (result.status === 'fulfilled' && result.value && result.value.length > 50) {
+                    return result.value;
+                }
+            }
+            
+            return 'Desculpe, não foi possível encontrar a letra desta música.';
+        }
+
+        async function buscarVideoYouTube(cantor, musica) {
+            const query = `${cantor} ${musica} oficial`;
+            const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+            try {
+                const response = await timeoutPromise(3000, fetch(url));
+                if (!response.ok) throw new Error('Falha ao buscar vídeo');
+                const data = await response.json();
+                if (data.items.length === 0) throw new Error('Nenhum vídeo encontrado');
+                return data.items[0].id.videoId;
+            } catch (error) {
+                console.error('Erro ao buscar vídeo:', error);
+                return null;
+            }
+        }
+
+        function mostrarFeedback(mensagem) {
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            feedback.textContent = mensagem;
+            document.body.appendChild(feedback);
+            setTimeout(() => {
+                feedback.style.opacity = '0';
+                setTimeout(() => feedback.remove(), 500);
+            }, 2000);
+        }
+
+        // Função que carrega apenas os dados essenciais (sem esperar letra)
+        async function carregarMusicaEssencial() {
+            const params = new URLSearchParams(window.location.search);
+            const numero = parseInt(params.get('numero'), 10);
+            try {
+                const response = await fetch('songs.json');
+                if (!response.ok) throw new Error('Falha ao carregar dados');
+                const data = await response.json();
+                const musica = data.find(m => m.numero === numero);
+                if (!musica) throw new Error('Música não encontrada');
+
+                document.getElementById('detalhes-numero').textContent = musica.numero;
+                document.getElementById('detalhes-cantor').textContent = musica.cantor;
+                document.getElementById('detalhes-musica').textContent = musica.musica;
+
+                window.musicaAtual = musica;
+                atualizarEstadoFavorito();
+
+                // Carrega o vídeo (assíncrono, sem travar)
+                buscarVideoYouTube(musica.cantor, musica.musica).then(videoId => {
+                    const videoContainer = document.getElementById('mini-player-video');
+                    if (videoId && videoContainer) {
+                        videoContainer.innerHTML = `
+                            <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&controls=1" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope" 
+                                    allowfullscreen>
+                            </iframe>
+                        `;
+                    } else if (videoContainer) {
+                        videoContainer.innerHTML = '<p style="color:#E0E0E0; text-align:center; padding:20px;">Nenhum vídeo encontrado.</p>';
+                    }
+                });
+
+                // Busca a letra em segundo plano e atualiza o container
+                buscarLetraMultiplasFontes(musica.cantor, musica.musica).then(letra => {
+                    const letraDiv = document.getElementById('detalhes-letra');
+                    letraDiv.innerHTML = letra.replace(/\n/g, '<br>');
+                });
+
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao carregar a música. Tente novamente.');
+            }
+        }
+
+        function atualizarEstadoFavorito() {
+            const btn = document.getElementById('favorito-btn');
+            const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+            const musica = window.musicaAtual;
+            if (!musica) return;
+            const favoritada = favoritos.some(f => f.numero === musica.numero);
+            btn.textContent = favoritada ? '❤️' : '🤍';
+        }
+
+        function toggleFavorito() {
+            const btn = document.getElementById('favorito-btn');
+            const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+            const musica = window.musicaAtual;
+            if (!musica) return;
+            const favoritada = favoritos.some(f => f.numero === musica.numero);
+            if (favoritada) {
+                const novosFavoritos = favoritos.filter(f => f.numero !== musica.numero);
+                localStorage.setItem('favoritos', JSON.stringify(novosFavoritos));
+                btn.textContent = '🤍';
+                mostrarFeedback('💔 Removido dos favoritos!');
+            } else {
+                favoritos.push(musica);
+                localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                btn.textContent = '❤️';
+                mostrarFeedback('❤️ Adicionado aos favoritos!');
+            }
+        }
+
+        function compartilharWhatsApp() {
+            const musica = window.musicaAtual;
+            if (!musica) {
+                alert('Nenhuma música carregada para compartilhar.');
+                return;
+            }
+            const mensagem = `🎵 *DESCUBRA ESSA MÚSICA!* 🎵\n\n✨ *Música:* ${musica.musica}\n🎤 *Artista:* ${musica.cantor}\n🔢 *Código:* ${musica.numero}`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(mensagem)}`, '_blank');
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+        
+        function downloadImage() {
+            alert('Funcionalidade de download disponível em breve!');
+        }
+
+        // Event listeners
+        document.getElementById('favorito-btn').addEventListener('click', toggleFavorito);
+        document.getElementById('compartilhar-btn').addEventListener('click', compartilharWhatsApp);
+        document.getElementById('btn-voltar').addEventListener('click', function() {
+            localStorage.setItem('retornandoDeDetalhes', 'true');
+        });
+
+        document.addEventListener('DOMContentLoaded', carregarMusicaEssencial);
+    </script>
+</body>
+</html>

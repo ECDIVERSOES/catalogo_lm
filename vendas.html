@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>EC Diversões - Aluguel e Serviços</title>
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #000000;
+            padding: 10px 10px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .logo-titulo {
+            display: block;
+            margin: 6px auto 8px auto;
+            max-width: 260px;
+            width: 85%;
+            height: auto;
+            max-height: 75px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        p {
+            margin: 5px 0;
+            line-height: 1.3;
+            font-size: 16px;
+            color: #F8F9FA;
+            padding: 0 10px;
+        }
+
+        .chamada-principal {
+            color: #FFD966;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 6px;
+        }
+
+        .chamada-servico {
+            color: #5cb85c;
+            font-weight: bold;
+            margin-top: 12px;
+            background: rgba(0,0,0,0.5);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 30px;
+        }
+
+        .chamada-contato {
+            font-weight: 600;
+            margin: 8px 0 4px;
+            background: #1e1e1e;
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+        }
+
+        .galeria-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 10px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            overflow: visible;
+        }
+
+        .slide-imagem {
+            width: 100%;
+            max-height: 32vh;
+            object-fit: contain;
+            border-radius: 14px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+            transition: opacity 0.25s ease-in-out;
+            background-color: #0a0a0a;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .seta {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-size: 28px;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: 0.2s;
+            z-index: 20;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .seta:hover {
+            background-color: #ffc107;
+            color: #1e1e1e;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .seta-esquerda { left: 8px; }
+        .seta-direita { right: 8px; }
+
+        .indicador {
+            margin-top: 8px;
+            font-size: 14px;
+            background: rgba(0,0,0,0.7);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 40px;
+            color: #FFD966;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .botoes-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 24px;
+            margin: 16px 0 10px;
+            width: 100%;
+        }
+
+        .botao-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .botao-circle i { font-size: 28px; }
+        .circle-whatsapp { background-color: #25D366; }
+        .circle-instagram { background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .circle-facebook { background-color: #1877F2; }
+
+        .botao-voltar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 14px 0;
+            background: linear-gradient(90deg, #0b5ed7, #007bff);
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 -3px 12px rgba(0,0,0,0.5);
+            z-index: 1000;
+            backdrop-filter: blur(2px);
+        }
+        .botao-voltar i { margin-right: 10px; }
+
+        @media (max-width: 480px) {
+            .logo-titulo { max-width: 220px; max-height: 65px; }
+            .seta { width: 38px; height: 38px; font-size: 22px; padding: 5px 8px; }
+            .slide-imagem { max-height: 28vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="imagens/vendas_titulo.png" alt="EC Diversões - Logo" class="logo-titulo" loading="eager">
+
+    <p class="chamada-principal">
+        ⚡ **Pronto para a festa?** Alugue seu equipamento agora!
+    </p>
+
+    <!-- Carrossel com troca semi-automática -->
+    <div class="galeria-container" id="galeriaContainer"></div>
+    <div id="indicadorPosicao" class="indicador"></div>
+
+    <p class="chamada-servico">
+        <i class="fas fa-microphone-alt" style="margin-right: 6px;"></i> 
+        locação de karaokê 3x1 para festas e eventos. Entre em contato para um orçamento sem compromisso! Aceitamos cartão de crédito.</p>
+    
+    <p class="chamada-contato">
+        📲 **ORÇAMENTO RÁPIDO via WhatsApp!** Clique no ícone abaixo e fale conosco.
+    </p>
+    
+    <div class="botoes-container">
+        <a href="https://wa.me/5522999292436?text=Ol&aacute;! Tenho interesse em alugar seus produtos. Aguardo seu retorno. Obrigado(a)!" class="botao-circle circle-whatsapp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/lm.karaoke?igsh=MXIwdHdqNDVoMGMwcg==" class="botao-circle circle-instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/share/1N37hNVryb/" class="botao-circle circle-facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+    </div>
+    
+    <p style="font-size: 0.85rem; margin: 4px 0 8px 0; opacity: 0.9;">
+        📢 Siga-nos no <strong>Instagram</strong> e curta nossa página no <strong>Facebook</strong>!
+    </p>
+
+    <a href="index.html" class="botao-voltar">
+        <i class="fas fa-arrow-left"></i> Voltar para Página Principal
+    </a>
+
+    <script>
+        (function() {
+            // ---------- CONFIGURAÇÃO DO CARROSSEL ----------
+            const PASTA = 'imagens/';
+            const EXTENSAO = '.jpg';       // suas imagens são .jpg
+            const PREFIXO = 'vendas';       // vendas01.jpg, vendas02.jpg...
+            const INTERVALO_AUTO = 5000;    // 5 segundos sem interação -> troca automática
+
+            let imagens = [];
+            let indice = 0;
+            let total = 0;
+            let timerAuto = null;            // guarda o setInterval
+            let aguardandoReinicio = false;   // para não acumular timers
+
+            const container = document.getElementById('galeriaContainer');
+            const indicadorDiv = document.getElementById('indicadorPosicao');
+            let imgElement = null;
+            let setaEsq = null;
+            let setaDir = null;
+
+            // ---------- FUNÇÕES DO CARROSSEL ----------
+            function pararAuto() {
+                if (timerAuto) {
+                    clearInterval(timerAuto);
+                    timerAuto = null;
+                }
+            }
+
+            function iniciarAuto() {
+                if (total <= 1) return;     // só inicia se houver mais de uma imagem
+                pararAuto();                // garante que não haja duplicidade
+                timerAuto = setInterval(() => {
+                    proximaImagem(true);    // true = ação automática (não reinicia timer imediatamente)
+                }, INTERVALO_AUTO);
+            }
+
+            // Reinicia o timer (chamado após qualquer interação do usuário)
+            function reiniciarTimerAposInteracao() {
+                if (total <= 1) return;
+                pararAuto();
+                iniciarAuto();
+            }
+
+            function atualizarCarrossel() {
+                if (!imgElement || total === 0) return;
+                imgElement.src = imagens[indice];
+                imgElement.alt = `Equipamento EC Diversões ${indice+1}`;
+
+                if (total > 1) {
+                    indicadorDiv.textContent = `${indice+1} / ${total}`;
+                    indicadorDiv.style.display = 'inline-block';
+                } else {
+                    indicadorDiv.style.display = 'none';
+                }
+
+                // controle visual das setas
+                if (setaEsq && setaDir) {
+                    const mostrar = total > 1;
+                    setaEsq.style.display = mostrar ? 'flex' : 'none';
+                    setaDir.style.display = mostrar ? 'flex' : 'none';
+                }
+            }
+
+            function proximaImagem(automático = false) {
+                if (total <= 1) return;
+                indice = (indice + 1) % total;
+                atualizarCarrossel();
+                // se NÃO foi um clique automático (ou seja, interação humana), reinicia o timer
+                if (!automático) {
+                    reiniciarTimerAposInteracao();
+                }
+            }
+
+            function imagemAnterior() {
+                if (total <= 1) return;
+                indice = (indice - 1 + total) % total;
+                atualizarCarrossel();
+                reiniciarTimerAposInteracao();   // interação do usuário -> reinicia contagem
+            }
+
+            // detecta imagens sequenciais: vendas01.jpg, vendas02.jpg...
+            function detectarImagens(callback) {
+                let tentativa = 1;
+                let lista = [];
+                function tentar() {
+                    let num = tentativa.toString().padStart(2, '0');
+                    let url = `${PASTA}${PREFIXO}${num}${EXTENSAO}`;
+                    let testImg = new Image();
+                    testImg.onload = () => {
+                        lista.push(url);
+                        tentativa++;
+                        tentar();
+                    };
+                    testImg.onerror = () => {
+                        callback(lista);
+                    };
+                    testImg.src = url;
+                }
+                tentar();
+            }
+
+            function construirGaleria(urls) {
+                imagens = urls;
+                total = urls.length;
+
+                if (total === 0) {
+                    // fallback: exibe vendas.jpg sem setas e sem auto
+                    container.innerHTML = `<img src="imagens/vendas.jpg" alt="Equipamentos EC" class="slide-imagem">`;
+                    indicadorDiv.style.display = 'none';
+                    return;
+                }
+
+                container.innerHTML = '';
+                imgElement = document.createElement('img');
+                imgElement.className = 'slide-imagem';
+
+                setaEsq = document.createElement('div');
+                setaEsq.className = 'seta seta-esquerda';
+                setaEsq.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                setaEsq.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    imagemAnterior();
+                });
+
+                setaDir = document.createElement('div');
+                setaDir.className = 'seta seta-direita';
+                setaDir.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                setaDir.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    proximaImagem(false);  // false = interação manual
+                });
+
+                container.appendChild(setaEsq);
+                container.appendChild(imgElement);
+                container.appendChild(setaDir);
+
+                indice = 0;
+                atualizarCarrossel();
+
+                // ---------- SWIPE (toque) ----------
+                let touchStartX = 0;
+                container.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                container.addEventListener('touchend', (e) => {
+                    const touchEndX = e.changedTouches[0].screenX;
+                    const diff = touchEndX - touchStartX;
+                    if (Math.abs(diff) > 40) {
+                        if (diff < 0) {
+                            proximaImagem(false);   // swipe esquerda -> próximo
+                        } else {
+                            imagemAnterior();        // swipe direita -> anterior
+                        }
+                    }
+                });
+
+                // Inicia o modo automático apenas se houver mais de uma imagem
+                if (total > 1) {
+                    iniciarAuto();
+                }
+            }
+
+            // Iniciar detecção
+            detectarImagens(function(found) {
+                if (found.length === 0) {
+                    container.innerHTML = `<img src="imagens/vendas.jpg" alt="Equipamentos EC" class="slide-imagem">`;
+                    indicadorDiv.style.display = 'none';
+                } else {
+                    construirGaleria(found);
+                }
+            });
+
+            // Previne scroll por touch (igual ao original)
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+        })();
+    </script>
+</body>
+</html>
