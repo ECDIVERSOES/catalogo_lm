@@ -130,13 +130,11 @@
 <div class="nova-tela"> 
     <div class="locacoes">
         <p><strong>KARAOKÊ CATÁLOGO</strong></p>
-        <p>32.677 Músicas</p>
+        <p>32.694 Músicas</p>
     </div>
-
     <button class="btn-verificar" onclick="window.location.href='atualizacao.html'">
         🔄 VERIFICAR ATUALIZAÇÕES
     </button>
-
     <div class="toggle-modo-card">
         <button id="btnToggleModo" class="toggle-btn" onclick="alternarModoExibicao()">
             🌟 ATIVAR MODO FULL
@@ -150,20 +148,16 @@
             📋 <strong>MODO RAF</strong> → exibe apenas códigos da Raf entre 1001 e 50001
         </div>
     </div>
-
     <div class="info-desenv">
         <p><strong>Desenvolvido por EC DIVERSÕES</strong></p>
         <p><a href="mailto:esiocosta16@gmail.com">esiocosta16@gmail.com</a></p>
     </div>
-
     <div class="atualizacao-pacotes">
         <h3>ATUALIZAÇÃO DE PACOTES</h3>
-        <p>O Melhor do Karaokê só em nossas Máquinas tem, (Novos pacotes adicionados 04 de Maio 2026)</p>
+        <p>O Melhor do Karaoê só em nossas Maquinas tem, (Novos pacotes adicionados 12 de Maio 2026)</p>
     </div>
-
     <a href="index.html" class="botao-voltar">Voltar para o Catálogo</a>
 </div>
-
 <script src="config.js"></script>
 <script>
     function alternarModoExibicao() {
@@ -176,7 +170,6 @@
         }
         setTimeout(() => atualizarInterfaceModo(), 1500);
     }
-
     function atualizarInterfaceModo() {
         const modo = loadConfig(); // true = FULL, false = NORMAL
         const btn = document.getElementById('btnToggleModo');
@@ -193,7 +186,6 @@
             statusSpan.className = 'raf-status';
         }
     }
-
     document.addEventListener('DOMContentLoaded', atualizarInterfaceModo);
 </script>
 </body>
