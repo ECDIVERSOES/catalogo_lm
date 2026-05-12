@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Atualizando - LM-KARAOKÊ</title>
-    <meta name="theme-color" content="#000000">
+    <title>Atualizando - EC Karaokê Hits</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #0d1b2a 100%);
@@ -16,6 +20,7 @@
             align-items: center;
             padding: 20px;
         }
+        
         .container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -27,109 +32,133 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             animation: fadeIn 0.3s ease;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .icone { font-size: 80px; animation: pulse 0.8s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        h2 { color: #FFD700; font-size: 24px; margin: 20px 0 10px; }
-        .versao-info { color: #FFA500; font-size: 14px; margin: 5px 0; font-weight: bold; }
-        .mensagem { color: #E0E0E0; font-size: 16px; margin: 15px 0; line-height: 1.5; }
-        .info { background: rgba(255, 215, 0, 0.1); padding: 10px; border-radius: 10px; margin-top: 20px; font-size: 13px; color: #ccc; }
-        .progresso { width: 100%; height: 4px; background: rgba(255, 255, 255, 0.2); border-radius: 2px; margin-top: 25px; overflow: hidden; }
-        .progresso-bar { width: 0%; height: 100%; background: linear-gradient(90deg, #FFD700, #FFA500); border-radius: 2px; animation: progresso 10s linear forwards; }
-        @keyframes progresso { from { width: 0%; } to { width: 100%; } }
-        .total-musicas { font-size: 12px; color: #FFD700; margin-top: 10px; opacity: 0.8; }
-        .loading { font-size: 12px; color: #ccc; margin-top: 8px; }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .icone {
+            font-size: 80px;
+            animation: pulse 0.8s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        h2 {
+            color: #FFD700;
+            font-size: 24px;
+            margin: 20px 0 10px;
+        }
+        
+        .versao-info {
+            color: #FFA500;
+            font-size: 14px;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        
+        .mensagem {
+            color: #E0E0E0;
+            font-size: 16px;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+        
+        .destaque {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .info {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #ccc;
+        }
+        
+        .progresso {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 25px;
+            overflow: hidden;
+        }
+        
+        .progresso-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 2px;
+            animation: progresso 10s linear forwards;
+        }
+        
+        @keyframes progresso {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+        
+        .total-musicas {
+            font-size: 12px;
+            color: #FFD700;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="icone">🎉</div>
-    <h2>CATÁLOGO ATUALIZADO!</h2>
-    <div class="versao-info" id="versaoTexto">📌 Carregando versão...</div>
-    <div class="mensagem" id="mensagem">Aguardando informações da atualização...</div>
-    <div class="progresso"><div class="progresso-bar"></div></div>
-    <div class="info" id="infoRedirecionamento">🔃 Aplicando atualização... Redirecionando em instantes</div>
-    <div class="total-musicas" id="totalMusicas">🎤 Total de músicas: 32.677</div>
-    <div class="loading" id="loadingMsg">Preparando nova versão...</div>
-</div>
-
-<script>
-    // Captura parâmetros da URL
-    const urlParams = new URLSearchParams(window.location.search);
-    let novasParam = urlParams.get('novas');
-    let dataParam = urlParams.get('data');
-    let versaoParam = urlParams.get('versao');
-
-    // Função para buscar dados do service-worker.js (fallback)
-    async function carregarDadosDoSW() {
-        try {
-            const response = await fetch('./service-worker.js?t=' + Date.now());
-            const swContent = await response.text();
-            let versao = versaoParam || '1.6';
-            const cacheMatch = swContent.match(/CACHE_NAME\s*=\s*['"]([^'"]+)['"]/);
-            if (cacheMatch && cacheMatch[1]) {
-                const vMatch = cacheMatch[1].match(/(\d+(?:\.\d+)?)/);
-                if (vMatch) versao = vMatch[1];
-            }
-            let data = dataParam ? decodeURIComponent(dataParam) : '04 de Maio 2026';
-            if (!dataParam) {
-                const dataMatch = swContent.match(/DATA_ATUALIZACAO\s*=\s*['"]([^'"]+)['"]/);
-                if (dataMatch) data = dataMatch[1];
-            }
-            let novas = novasParam ? decodeURIComponent(novasParam) : '+90';
-            if (!novasParam) {
-                const novasMatch = swContent.match(/NOVAS_CANCOES\s*=\s*['"]([^'"]+)['"]/);
-                if (novasMatch) novas = novasMatch[1];
-            }
-            return { versao, data, novas };
-        } catch (e) {
-            console.error('Erro ao ler service-worker.js:', e);
-            return { versao: versaoParam || '1.6', data: dataParam || '04 de Maio 2026', novas: novasParam || '+90' };
-        }
-    }
-
-    // Força a ativação do novo Service Worker
-    async function ativarNovoServiceWorker() {
-        if ('serviceWorker' in navigator) {
-            const registration = await navigator.serviceWorker.getRegistration();
-            if (registration && registration.waiting) {
-                // Envia mensagem para o worker aguardando pular a espera
-                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-                // Aguarda a ativação
-                return new Promise((resolve) => {
-                    navigator.serviceWorker.addEventListener('controllerchange', () => {
-                        resolve();
-                    });
-                });
-            }
-        }
-        return Promise.resolve();
-    }
-
-    // Preenche a tela e força ativação
-    async function iniciar() {
-        const dados = await carregarDadosDoSW();
-        document.getElementById('versaoTexto').innerHTML = `📌 Versão do catálogo: ${dados.versao}`;
-        document.getElementById('mensagem').innerHTML = `
-            Catálogo atualizado dia ${dados.data}<br>
-            ✨ ${dados.novas} canções novas adicionadas!<br>
+    <div class="container">
+        <div class="icone">🎉</div>
+        <h2>CATÁLOGO ATUALIZADO!</h2>
+        <div class="versao-info">📌 Versão do catálogo: 2.0</div>
+        <div class="mensagem" id="mensagem">
+            Catálogo atualizado dia 12 de Maio 2026<br>
+            ✨ +18 novas canções adicionadas!<br>
             🎵 Aproveite as novidades!
-        `;
-        document.getElementById('loadingMsg').style.display = 'none';
-        document.getElementById('infoRedirecionamento').innerHTML = '✅ Atualização aplicada! Redirecionando...';
+        </div>
+        <div class="progresso">
+            <div class="progresso-bar"></div>
+        </div>
+        <div class="info">🔃 Redirecionando em 10 segundos...</div>
+        <div class="total-musicas">🎤 Total de músicas: 32.694</div>
+    </div>
+
+    <script>
+        // Contagem regressiva
+        let segundos = 10;
+        const infoDiv = document.querySelector('.info');
         
-        // Ativa o novo Service Worker
-        await ativarNovoServiceWorker();
+        const intervalo = setInterval(() => {
+            segundos--;
+            if (segundos > 0) {
+                infoDiv.innerHTML = `🔃 Redirecionando em ${segundos} segundos...`;
+            } else {
+                clearInterval(intervalo);
+            }
+        }, 1000);
         
-        // Redireciona para o index após 2 segundos (tempo para o SW assumir)
+        // Redireciona para o index após 10 segundos
         setTimeout(() => {
-            // Limpa qualquer flag antiga para não bloquear futuras atualizações
-            localStorage.removeItem('ultimoRedirectVersao');
             window.location.href = './index.html';
-        }, 2000);
-    }
-    
-    iniciar();
-</script>
+        }, 10000);
+    </script>
 </body>
 </html>
