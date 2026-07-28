@@ -42,6 +42,12 @@
         "genero": "Gospel"
     },
     {
+        "cantor": "grey",
+        "numero": 5172,
+        "musica": "acid rain chris",
+        "genero": "Rock / Metal"
+    },
+    {
         "cantor": "Ivete -  Versão FORRÓ",
         "numero": 5117,
         "musica": "Não Precisa Mudar",
@@ -118,6 +124,24 @@
         "numero": 5163,
         "musica": "LINDA DEMAIS",
         "genero": "Pop / MPB"
+    },
+    {
+        "cantor": "sleep token",
+        "numero": 5179,
+        "musica": "Rain",
+        "genero": "Metal Alternativo / Progressive Metal"
+    },
+    {
+        "cantor": "sleep token",
+        "numero": 5180,
+        "musica": "take me back to eden",
+        "genero": "Metal Alternativo / Progressive Metal"
+    },
+    {
+        "cantor": "sleep token",
+        "numero": 5181,
+        "musica": "the apparition",
+        "genero": "Metal Alternativo / Progressive Metal"
     },
     {
         "cantor": "TAYRONE E ZEZITO CIGANO",
@@ -46386,6 +46410,12 @@
         "genero": "Pop"
     },
     {
+        "cantor": "Cynthia Erivo, Ariana Grande",
+        "numero": 5183,
+        "musica": "Defying Gravity",
+        "genero": "Pop / R&B"
+    },
+    {
         "cantor": "Cynthia Hinds",
         "numero": 20477,
         "musica": "Let´S Fall In Love Again",
@@ -53308,6 +53338,12 @@
         "numero": 6463,
         "musica": "Milagreiro",
         "genero": "MPB"
+    },
+    {
+        "cantor": "Djentledeath",
+        "numero": 5176,
+        "musica": "Fangs",
+        "genero": "Djent / Death Metal"
     },
     {
         "cantor": "Dnce",
@@ -60942,6 +60978,12 @@
         "genero": "Sertanejo"
     },
     {
+        "cantor": "Enemy",
+        "numero": 5177,
+        "musica": "Imagine Dragons",
+        "genero": "Rock / Metal Alternativo"
+    },
+    {
         "cantor": "Engelbert Humperdinck",
         "numero": 4603,
         "musica": "Release Me",
@@ -67822,6 +67864,12 @@
         "numero": 77845,
         "musica": "A Boa Parte",
         "genero": "Gospel"
+    },
+    {
+        "cantor": "Fiddle",
+        "numero": 5178,
+        "musica": "LIFETIME Chris Grey",
+        "genero": "Desconhecido / Pode variar"
     },
     {
         "cantor": "Fiduma E Jeca",
@@ -74890,6 +74938,12 @@
         "numero": 78151,
         "musica": "Non Ho L'Tta",
         "genero": "Pop Italiano"
+    },
+    {
+        "cantor": "GiGrassiSalles",
+        "numero": 5175,
+        "musica": "Era Uma Vez No Sonho",
+        "genero": "Desconhecido / Artista independente"
     },
     {
         "cantor": "Gil",
@@ -99126,6 +99180,12 @@
         "genero": "Sertanejo"
     },
     {
+        "cantor": "José Augusto",
+        "numero": 5186,
+        "musica": "Sabado",
+        "genero": "MPB / Romântico"
+    },
+    {
         "cantor": "Jose Augusto - Roupa Nova",
         "numero": 17014,
         "musica": "Eu E Voce",
@@ -108604,6 +108664,12 @@
         "numero": 77752,
         "musica": "Soul Parsifal",
         "genero": "Rock brasileiro"
+    },
+    {
+        "cantor": "Legião Urbana",
+        "numero": 5190,
+        "musica": "Petróleo do futuro",
+        "genero": "Rock / Rock Nacional"
     },
     {
         "cantor": "Leif Garrett",
@@ -129000,6 +129066,12 @@
         "genero": "Sertanejo"
     },
     {
+        "cantor": "MENOS É MAIS",
+        "numero": 5184,
+        "musica": "SAUDADE INCONVENIENTE",
+        "genero": "Pagode"
+    },
+    {
         "cantor": "Menos E Mais - Hugo E Guilherme",
         "numero": 17631,
         "musica": "A Casa Mais Feliz Da Rua",
@@ -135336,6 +135408,12 @@
         "genero": "Arrocha"
     },
     {
+        "cantor": "Natanzinho lima",
+        "numero": 5188,
+        "musica": "SONHO DE AMOR",
+        "genero": "Forró / Piseiro"
+    },
+    {
         "cantor": "Natanzinho Lima E Gusttavo Lima",
         "numero": 77606,
         "musica": "A Noite",
@@ -135628,6 +135706,12 @@
         "numero": 17929,
         "musica": "ULTIMA NOITE",
         "genero": "Forró, Sertanejo"
+    },
+    {
+        "cantor": "NATTAN - ZÉ VAQUEIRO",
+        "numero": 5185,
+        "musica": "APROVEITA QUE EU TO BRIGADO",
+        "genero": "Forró / Piseiro"
     },
     {
         "cantor": "Nattan Ana Castela",
@@ -163128,6 +163212,12 @@
         "genero": "Pop"
     },
     {
+        "cantor": "ROMIM MATA",
+        "numero": 5191,
+        "musica": "DESENROLA BATE JOGA DE LADINHO",
+        "genero": "Forró / Piseiro"
+    },
+    {
         "cantor": "Ronaldo Adriano",
         "numero": 58662,
         "musica": "Blusa Vermelha",
@@ -165069,6 +165159,12 @@
         "cantor": "Sabrina Carpenter",
         "numero": 71029,
         "musica": "Darling I'M A Mess",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Sabrina Carpenter",
+        "numero": 5187,
+        "musica": "Manchild",
         "genero": "Pop"
     },
     {
@@ -171160,6 +171256,18 @@
         "numero": 64527,
         "musica": "Seasons In The Abyss",
         "genero": "Metal"
+    },
+    {
+        "cantor": "sleep token",
+        "numero": 5173,
+        "musica": "Alkaline",
+        "genero": "Metal Alternativo / Progressive Metal"
+    },
+    {
+        "cantor": "sleep token",
+        "numero": 5174,
+        "musica": "Dangerous",
+        "genero": "Metal Alternativo / Progressive Metal"
     },
     {
         "cantor": "Slipknot",
@@ -189954,6 +190062,12 @@
         "genero": "Sertanejo"
     },
     {
+        "cantor": "Waldick Soriano",
+        "numero": 5189,
+        "musica": "Torturas de Amor",
+        "genero": "Brega / Romântico"
+    },
+    {
         "cantor": "Waldirene",
         "numero": 1811,
         "musica": "A Garota Do Roberto",
@@ -193480,6 +193594,12 @@
         "numero": 9061,
         "musica": "That Thing You Do",
         "genero": "Pop"
+    },
+    {
+        "cantor": "wrong",
+        "numero": 5182,
+        "musica": "wrong",
+        "genero": "Desconhecido / Pode variar"
     },
     {
         "cantor": "Wynonna",
