@@ -63294,6 +63294,126 @@
         "genero": "Pagode / Arrocha"
     },
     {
+        "cantor": "Dilsinho",
+        "numero": 18131,
+        "musica": "3 EM 3 HORAS",
+        "genero": "Pagode"
+    },
+    {
+        "cantor": "Jorge Vercilo (Vercillo) - Balara",
+        "numero": 18132,
+        "musica": "ALGO ME DIZ",
+        "genero": "MPB"
+    },
+    {
+        "cantor": "CountryBeat - Rionegro e Solimoes",
+        "numero": 18133,
+        "musica": "APAIXONA MUITA GENTE",
+        "genero": "CountryBeat"
+    },
+    {
+        "cantor": "Soweto",
+        "numero": 18134,
+        "musica": "ESTRELA DA PAZ",
+        "genero": "Pagode"
+    },
+    {
+        "cantor": "Matheus e Kauan - Ana Castela",
+        "numero": 18135,
+        "musica": "ILUSAO DE OTICA",
+        "genero": "Sertanejo"
+    },
+    {
+        "cantor": "Sorriso Maroto",
+        "numero": 18136,
+        "musica": "INDIFERENCA",
+        "genero": "Pagode"
+    },
+    {
+        "cantor": "Julia e Rafaela",
+        "numero": 18137,
+        "musica": "MEDO",
+        "genero": "Sertanejo"
+    },
+    {
+        "cantor": "Daniel",
+        "numero": 18138,
+        "musica": "MEU MAIOR SUCESSO E VOCE",
+        "genero": "Sertanejo"
+    },
+    {
+        "cantor": "Gustavo Mioto - Murilo Huff",
+        "numero": 18139,
+        "musica": "NOVO SOZINHO",
+        "genero": "Sertanejo"
+    },
+    {
+        "cantor": "Simone",
+        "numero": 18140,
+        "musica": "PEQUENINO CAO",
+        "genero": "Pagode"
+    },
+    {
+        "cantor": "Dorgival Dantas",
+        "numero": 18141,
+        "musica": "DESTA",
+        "genero": "Forró"
+    },
+    {
+        "cantor": "Panda",
+        "numero": 18142,
+        "musica": "EU TE SEGURO",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Zezé Di Camargo e Luciano",
+        "numero": 18143,
+        "musica": "IRMAO DA LUA, AMIGO DAS ESTRELAS",
+        "genero": "Sertanejo"
+    },
+    {
+        "cantor": "Anitta - Los Brasileros",
+        "numero": 18144,
+        "musica": "MEIA NOITE",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Zé Geraldo",
+        "numero": 18145,
+        "musica": "NA BARRA DO SEU VESTIDO",
+        "genero": "MPB"
+    },
+    {
+        "cantor": "Genesio Tocantins",
+        "numero": 18146,
+        "musica": "NOIS E JECA MAIS E JOIA",
+        "genero": "Sertanejo"
+    },
+    {
+        "cantor": "Dilsinho - Ana Castela",
+        "numero": 18147,
+        "musica": "PASSADA DE MAO",
+        "genero": "Pagode"
+    },
+    {
+        "cantor": "Thiaguinho",
+        "numero": 18148,
+        "musica": "PENSAMENTOS INTRUSIVOS",
+        "genero": "Pagode"
+    },
+    {
+        "cantor": "Diego e Victor Hugo",
+        "numero": 18149,
+        "musica": "RESPEITANDO MINHA SAUDADE",
+        "genero": "Sertanejo"
+    },
+    {
+        "cantor": "Marília Mendonça",
+        "numero": 18150,
+        "musica": "TUDO VAI FICAR BEM",
+        "genero": "Sertanejo"
+    },
+    {
         "cantor": "Justin Bieber",
         "numero": 19001,
         "musica": "Boyfriend",
@@ -74151,6 +74271,126 @@
         "cantor": "Miley Cyrus",
         "numero": 20820,
         "musica": "YOUGER YOU",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Chrisette Michele",
+        "numero": 20841,
+        "musica": "BEST OF ME",
+        "genero": "R&B"
+    },
+    {
+        "cantor": "Ariana Grande",
+        "numero": 20842,
+        "musica": "HATE THAT I MADE YOU LOVE ME",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Taylor Swift",
+        "numero": 20843,
+        "musica": "I KNEW IT, I KNEW YOU",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Sam Smith",
+        "numero": 20844,
+        "musica": "MY GUY",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Abba",
+        "numero": 20845,
+        "musica": "SLIPPING THROUGH MY FINGERS",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "BTS",
+        "numero": 20846,
+        "musica": "SWIM",
+        "genero": "K-Pop"
+    },
+    {
+        "cantor": "Iron Maiden",
+        "numero": 20847,
+        "musica": "WASTED YEARS",
+        "genero": "Heavy Metal"
+    },
+    {
+        "cantor": "Five",
+        "numero": 20848,
+        "musica": "WHEN THE LIGHTS GO OUT",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Roxette",
+        "numero": 20849,
+        "musica": "WISH I COULD FLY",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Rod Stewart",
+        "numero": 20850,
+        "musica": "YOU`RE IN MY HEART (THE FINAL ACCLAIM)",
+        "genero": "Rock"
+    },
+    {
+        "cantor": "Elvis Presley",
+        "numero": 20851,
+        "musica": "MARIE`S THE NAME HIS LATEST FLAME",
+        "genero": "Rock"
+    },
+    {
+        "cantor": "Elton John",
+        "numero": 20852,
+        "musica": "BELIEVE",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Backstreet Boys",
+        "numero": 20853,
+        "musica": "BOTTLE UP",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Madonna - Sabrina Carpenter",
+        "numero": 20854,
+        "musica": "BRING YOUR LOVE",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "vSpy vSpy",
+        "numero": 20855,
+        "musica": "CLARITY OF MIND",
+        "genero": "Rock"
+    },
+    {
+        "cantor": "All Saints",
+        "numero": 20856,
+        "musica": "NEVER EVER",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Jackson 5",
+        "numero": 20857,
+        "musica": "SHAKE YOUR BODY (DOWN TO THE GROUND)",
+        "genero": "Soul"
+    },
+    {
+        "cantor": "U2 - B.B. King",
+        "numero": 20858,
+        "musica": "WHEN LOVE COMES TO TOWN",
+        "genero": "Rock"
+    },
+    {
+        "cantor": "Corrs (The) - Bono",
+        "numero": 20859,
+        "musica": "WHEN THE STARS GO BLUE",
+        "genero": "Pop"
+    },
+    {
+        "cantor": "Carly Simon",
+        "numero": 20860,
+        "musica": "YOU BELONG TO ME",
         "genero": "Pop"
     },
     {
